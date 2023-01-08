@@ -1,0 +1,21 @@
+/// Fonts
+
+/// Inter
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/inter/inter-variable.ttf") format("truetype");
+}
+
+/// Playfair Display
+@font-face {
+  font-family: "Playfair Display";
+  src: url("./fonts/playfair-display/playfair-display-variable.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("./fonts/playfair-display/playfair-display-variable-italic.ttf")
+    format("truetype");
+  font-style: italic;
+}

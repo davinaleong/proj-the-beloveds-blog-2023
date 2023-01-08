@@ -1,0 +1,82 @@
+/// Typography
+
+/// Typography - General
+a,
+.a {
+  --anchor-clr: var(--clr-secondary-400);
+  --anchor-hover-clr: var(--clr-secondary-300);
+
+  color: var(--anchor-clr);
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: var(--anchor-hover-clr);
+  }
+
+  @each $key, $value in $colors {
+    &.link-#{$key} {
+      --anchor-clr: color($key, "400");
+      --anchor-hover-clr: color($key, "300");
+    }
+  }
+}
+
+strong,
+.strong {
+  font-weight: var(--fw-bold);
+}
+
+em,
+.em {
+  font-style: var(--fs-italic);
+}
+
+/// Typography - Headings
+.heading {
+  --heading-ff: var(--ff-secondary);
+  --heading-fz: var(--fz-body);
+  --heading-fw: var(--fw-regular);
+  --heading-fs: var(--fs-normal);
+  --heading-clr: var(--clr-gray-900);
+  --heading-tt: none;
+  --heading-ls: normal;
+  --heading-lh: normal;
+
+  font-family: var(--heading-ff);
+  font-size: var(--heading-fz);
+  font-weight: var(--heading-fw);
+  font-style: var(--heading-fs);
+  color: var(--heading-clr);
+  text-transform: var(--heading-tt);
+  letter-spacing: var(--heading-ls);
+  line-height: var(--heading-lh);
+}
+
+.heading-hero {
+  --heading-fz: var(--fz-hero-heading);
+  --heading-clr: var(--clr-gray-50);
+}
+
+.heading-section {
+  --heading-ff: var(--ff-primary);
+  --heading-fz: var(--fz-section-heading);
+  --heading-clr: var(--clr-secondary-400);
+  --heading-tt: uppercase;
+}
+
+.heading-sub {
+  --heading-fz: var(--fz-sub-heading);
+}
+
+.heading-year {
+  --heading-clr: var(--clr-gray-50);
+}
+
+.heading-article {
+  --heading-fz: var(--fz-article-heading);
+}
+
+.heading-modal {
+  --heading-clr: var(--clr-secondary-400);
+  --heading-fz: var(--fz-modal-heading);
+}

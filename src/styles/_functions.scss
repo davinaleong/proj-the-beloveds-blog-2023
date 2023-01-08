@@ -1,0 +1,108 @@
+/// Functions
+
+/// Functions - Colors
+@function color-map($color) {
+  $value: map-get($colors, $color);
+  @if $value {
+    @return $value;
+  } @else {
+    @error "color-map: #{$color} color map not found.";
+  }
+}
+
+@function color($color, $tint) {
+  $map: color-map($color);
+  @if ($map) {
+    $value: map-get($map, $tint);
+    @if ($value) {
+      @return $value;
+    } @else {
+      @error "color: #{$color}-#{$tint} not found.";
+    }
+  }
+}
+
+/// Functions - Fonts
+@function font-family($font-family) {
+  $value: map-get($font-families, $font-family);
+  @if ($value) {
+    @return $value;
+  } @else {
+    @error "font-family: #{$font-family} not found.";
+  }
+}
+
+@function font-weight($font-weight) {
+  $value: map-get($font-weights, $font-weight);
+  @if ($value) {
+    @return $value;
+  } @else {
+    @error "font-weight: #{$font-weight} not found.";
+  }
+}
+
+@function font-style($font-style) {
+  $value: map-get($font-styles, $font-style);
+  @if ($value) {
+    @return $value;
+  } @else {
+    @error "font-style: #{$font-style} not found.";
+  }
+}
+
+/// Function - Texts
+@function text-decoration($text-decoration) {
+  $value: map-get($text-decorations, $text-decoration);
+  @if ($value) {
+    @return $value;
+  } @else {
+    @error "text-decoration: #{$text-decoration} not found.";
+  }
+}
+
+@function text-align($text-align) {
+  $value: map-get($text-aligns, $text-align);
+  @if ($value) {
+    @return $value;
+  } @else {
+    @error "text-align: #{$text-align} not found.";
+  }
+}
+
+@function text-transform($text-transform) {
+  $value: map-get($text-transforms, $text-transform);
+  @if ($value) {
+    @return $value;
+  } @else {
+    @error "text-transform: #{$text-transform} not found.";
+  }
+}
+
+/// Functions - Breakpoints
+@function breakpoint($breakpoint, $offset: 0em) {
+  $value: map-get($breakpoints, $breakpoint);
+  @if ($value) {
+    @return calc($value + $offset);
+  } @else {
+    @error "breakpoint: #{$breakpoint} not found.";
+  }
+}
+
+/// Function - Spacers
+@function fixed-spacer($fixed-spacer) {
+  $value: map-get($fixed-spacers, $fixed-spacer);
+  @if ($value) {
+    @return $value;
+  } @else {
+    @error "fixed-spacer: #{$fixed-spacer} not found.";
+  }
+}
+
+@function variable-spacer($variable-spacer) {
+  $value: map-get($variable-spacers, $variable-spacer);
+  @if ($value) {
+    @return $value;
+  } @else {
+    @error "variable-spacer: #{$variable-spacer} not found.";
+  }
+}

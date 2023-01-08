@@ -1,0 +1,190 @@
+/// Variables
+
+$hello: hsl(0, 0%, 80%);
+$world: hsl(0, 0%, 21%);
+
+/// Colors
+$colors: (
+  "primary": (
+    "50": hsl(240, 100%, 99%),
+    "100": hsl(240, 100%, 96%),
+    "200": hsl(240, 100%, 93%),
+    "300": hsl(240, 100%, 88%),
+    "400": hsl(240, 100%, 74%),
+    "500": hsl(238, 69%, 62%),
+    "600": hsl(237, 37%, 46%),
+    "700": hsl(237, 37%, 38%),
+    "800": hsl(237, 37%, 26%),
+    "900": hsl(237, 37%, 10%),
+  ),
+  "secondary": (
+    "50": hsl(3, 94%, 99%),
+    "100": hsl(3, 94%, 95%),
+    "200": hsl(3, 94%, 80%),
+    "300": hsl(3, 94%, 70%),
+    "400": hsl(3, 94%, 60%),
+    "500": hsl(3, 94%, 50%),
+    "600": hsl(3, 94%, 40%),
+    "700": hsl(3, 94%, 30%),
+    "800": hsl(3, 94%, 20%),
+    "900": hsl(3, 94%, 10%),
+  ),
+  "gray": (
+    "50": hsl(0, 0%, 98%),
+    "100": hsl(0, 0%, 96%),
+    "200": hsl(0, 0%, 93%),
+    "300": hsl(0, 0%, 88%),
+    "400": hsl(0, 0%, 74%),
+    "500": hsl(0, 0%, 62%),
+    "600": hsl(0, 0%, 46%),
+    "700": hsl(0, 0%, 38%),
+    "800": hsl(0, 0%, 26%),
+    "900": hsl(0, 0%, 13%),
+  ),
+  "danger": (
+    "50": hsl(351, 100%, 96%),
+    "100": hsl(354, 100%, 90%),
+    "200": hsl(0, 73%, 77%),
+    "300": hsl(0, 69%, 67%),
+    "400": hsl(1, 83%, 63%),
+    "500": hsl(4, 90%, 58%),
+    "600": hsl(1, 77%, 55%),
+    "700": hsl(0, 65%, 51%),
+    "800": hsl(0, 66%, 47%),
+    "900": hsl(0, 73%, 41%),
+  ),
+  "success": (
+    "50": hsl(125, 39%, 94%),
+    "100": hsl(122, 38%, 84%),
+    "200": hsl(122, 37%, 74%),
+    "300": hsl(123, 38%, 64%),
+    "400": hsl(123, 38%, 57%),
+    "500": hsl(122, 39%, 49%),
+    "600": hsl(123, 41%, 45%),
+    "700": hsl(123, 43%, 39%),
+    "800": hsl(123, 46%, 34%),
+    "900": hsl(124, 55%, 24%),
+  ),
+);
+
+/// Fonts
+/// Fonts - Font Families
+$font-families: (
+  "primary": #{Inter,
+  Arial,
+  sans-serif},
+  "secondary": #{"Playfair Display",
+  "Times New Roman",
+  serif},
+);
+
+/// Fonts - Font Sizes
+$font-sizes: (
+  "base": 16px,
+  "copyright": clamp(0.75rem, 1rem + 2vw, 1.125rem),
+  "form-status": clamp(0.75rem, 1rem + 2vw, 1.125rem),
+  "pagination": clamp(0.75rem, 1rem + 2vw, 1.125rem),
+  "body": clamp(1rem, 1rem + 2vw, 1.5rem),
+  "close-modal": clamp(1.5rem, 1rem + 2vw, 2rem),
+  "article-date": clamp(0.75rem, 1rem + 2vw, 1.25rem),
+  "section-heading": clamp(1rem, 1rem + 2vw, 1.5rem),
+  "article-heading": clamp(1.875rem, 1rem + 3vw, 2.5rem),
+  "sub-heading": clamp(2.5rem, 1rem + 3vw, 3.75rem),
+  "modal-heading": clamp(2.5rem, 1rem + 3vw, 3.75rem),
+  "hero-heading": clamp(3.75rem, 1rem + 5vw, 6.25rem),
+);
+
+/// Fonts - Font Weights
+$font-weights: (
+  "100": 100,
+  "thin": 100,
+  "200": 200,
+  "extra-light": 200,
+  "300": 300,
+  "light": 300,
+  "400": 400,
+  "regular": 400,
+  "500": 500,
+  "medium": 500,
+  "600": 600,
+  "semibold": 600,
+  "700": 700,
+  "bold": 700,
+  "800": 800,
+  "extrabold": 800,
+  "900": 900,
+  "black": 900,
+);
+
+/// Fonts - Font Styles
+$font-styles: (
+  "normal": normal,
+  "italic": italic,
+  "oblique": italic,
+);
+
+/// Text
+/// Text - Text Decorations
+$text-decorations: (
+  "none": none,
+  "underline": underline,
+);
+
+/// Text - Text Alignments
+$text-aligns: (
+  "left": left,
+  "center": center,
+  "right": right,
+);
+
+/// Text - Text Transforms
+$text-transforms: (
+  "none": none,
+  "uppercase": uppercase,
+  "lowercase": lowercase,
+  "capitalize": capitalize,
+);
+
+/// Breakpoints
+$breakpoints: (
+  "phone": 18.75em,
+  "phone-l": 37.5em,
+  "tablet": 56.25em,
+  "desktop": 75em,
+  "desktop-l": 100em,
+);
+
+/// Spacers
+/// Spacers - Fixed Spacer
+$fixed-unit: 1rem;
+$fixed-spacers: (
+  "0": $fixed-unit * 0,
+  "100": $fixed-unit * 0.1,
+  "200": $fixed-unit * 0.25,
+  "300": $fixed-unit * 0.5,
+  "400": $fixed-unit * 1,
+  "500": $fixed-unit * 2,
+  "600": $fixed-unit * 5,
+  "700": $fixed-unit * 8,
+  "800": $fixed-unit * 12,
+  "900": $fixed-unit * 15,
+  "1000": $fixed-unit * 18,
+  "auto": auto,
+);
+
+/// Spacers - Variable Spacer
+$variable-unit: 1em;
+$variable-spacers: (
+  "0": $variable-unit * 0,
+  "100": $variable-unit * 0.1,
+  "200": $variable-unit * 0.25,
+  "300": $variable-unit * 0.5,
+  "400": $variable-unit * 1,
+  "500": $variable-unit * 2,
+  "600": $variable-unit * 5,
+  "700": $variable-unit * 8,
+  "800": $variable-unit * 12,
+  "900": $variable-unit * 15,
+  "1000": $variable-unit * 18,
+  "auto": auto,
+);

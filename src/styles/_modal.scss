@@ -1,0 +1,52 @@
+/// Modal
+
+/// Modal - Backdrop
+.modal::backdrop {
+  background-color: color("gray", "900");
+  opacity: 0.5;
+}
+
+/// Modal - Modal
+.modal {
+  position: fixed;
+  max-width: 80ch;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  padding: var(--size-v-500);
+  border: none;
+}
+
+/// Modal - Modal Dialog
+.modal-dialog {
+  position: relative;
+  text-align: center;
+}
+
+/// Modal - Modal Form
+.modal-form {
+  .input-group {
+    display: grid;
+    grid-template-columns: auto 6em;
+  }
+
+  .form-input {
+    padding: var(--size-v-200);
+    color: var(--clr-primary-800);
+    border: thin solid var(--clr-secondary-400);
+    background-color: var(--clr-primary-50);
+  }
+}
+
+/// Modal - Form Status
+.form-status__error {
+  color: var(--clr-danger-500);
+  font-size: var(--fz-form-status);
+  font-style: italic;
+}
+
+.form-status__success {
+  color: var(--clr-success-500);
+  font-size: var(--fz-form-status);
+  font-style: italic;
+}

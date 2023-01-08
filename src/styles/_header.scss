@@ -1,0 +1,107 @@
+/// Header
+
+/// Header - Primary Header
+.primary-header {
+  background-color: var(--clr-primary-900);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+/// Header - Primary Header Container
+.primary-header-container {
+  --primary-header-container-padding: var(--size-v-200);
+
+  position: relative;
+  padding-block: var(--primary-header-container-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--primary-header-height);
+
+  & > .btn-primary-brand {
+    height: 100%;
+  }
+
+  & > .primary-nav {
+    height: 100%;
+  }
+}
+
+/// Header - Brand
+.brand-icon {
+  --brand-icon-size: var(--size-f-500);
+
+  display: block;
+  width: var(--brand-icon-size);
+  height: var(--brand-icon-size);
+  background-image: url("./images/logo-svg.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: background-image 0.3s ease-in-out;
+}
+
+.btn-primary-brand:hover .brand-icon {
+  background-image: url("./images/logo-white-svg.svg");
+}
+
+/// Header - Primary Nav List
+.primary-nav__list {
+  --primary-nav-list-gap: var(--size-v-200);
+
+  display: flex;
+  gap: var(--primary-nav-list-gap);
+}
+
+/// Header - Menu Button
+.btn-primary-menu {
+  display: none;
+  position: absolute;
+  top: calc(var(--primary-header-height) / 2);
+  right: var(--size-v-400);
+  translate: 0 -50%;
+}
+
+.btn-primary-menu > .fa-xmark {
+  display: none;
+}
+
+/// Header - Mobile
+@media screen and (max-width: breakpoint("desktop", -0.01em)) {
+  .primary-header-container {
+    flex-direction: column;
+    align-items: center;
+    max-height: var(--primary-header-height);
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  .btn-primary-menu {
+    display: inline-flex;
+  }
+
+  .primary-nav {
+    display: flex;
+    width: 100%;
+    opacity: 0;
+    translate: 0 -100%;
+    transition: opacity, translate 0.3s ease-in-out;
+  }
+
+  .primary-nav__list {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .primary-header[aria-expanded="true"] .primary-header-container {
+    flex-direction: column;
+    max-height: var(--primary-header-expanded-height);
+  }
+
+  .primary-header[aria-expanded="true"] .primary-nav {
+    opacity: 1;
+    translate: 0 0;
+  }
+}

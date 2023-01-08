@@ -1,0 +1,122 @@
+/// Sections
+
+/// Sections - Sections
+.section {
+  --section-clr: inherit;
+  --section-bg-clr: transparent;
+  --section-height: calc(100vh - var(--primary-header-height));
+
+  color: var(--section-clr);
+  background-color: var(--section-bg-clr);
+}
+
+.section:has(> .container-fluid) {
+  min-height: var(--section-height);
+}
+
+.section:has(> .container) {
+  min-height: var(--section-height);
+}
+
+.section-featured {
+  --section-clr: var(--clr-primary-900);
+  --section-bg-clr: var(--clr-primary-50);
+  --section-height: 35vh;
+}
+
+.section-content {
+  --section-height: 50vh;
+}
+
+/// Sections - Containers
+.container-section {
+  padding-block: var(--size-v-400);
+}
+
+.container-featured {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  gap: var(--size-v-400);
+}
+
+/// Sections - Featured -  Gallery
+.featured-gallery {
+  --image-size: 10rem;
+
+  display: none;
+  position: relative;
+}
+
+.featured-image-one {
+  max-width: unset;
+  max-height: var(--image-size);
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  animation: featured-image-one 5s infinite;
+}
+
+.featured-image-two {
+  max-width: var(--image-size);
+  max-height: unset;
+  aspect-ratio: 9/16;
+  object-fit: cover;
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  animation: featured-image-two 4s infinite;
+}
+
+.featured-image-three {
+  max-width: var(--image-size);
+  max-height: var(--image-size);
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  position: absolute;
+  top: 11rem;
+  left: 12rem;
+  animation: featured-image-one 4s infinite 1s;
+}
+
+@keyframes featured-image-one {
+  0% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0.5rem 0;
+  }
+
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes featured-image-two {
+  0% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 0.5rem;
+  }
+
+  100% {
+    translate: 0 0;
+  }
+}
+
+/// Sections - Featured - Media
+@media screen and (min-width: breakpoint("tablet")) {
+  .container-featured {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .featured-gallery {
+    display: block;
+  }
+}

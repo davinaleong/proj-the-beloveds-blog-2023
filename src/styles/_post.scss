@@ -1,0 +1,126 @@
+/// Post
+
+/// Post - Section
+.section-post {
+  --section-bg-clr: var(--clr-gray-50);
+}
+
+/// Post - Post Grid
+.post-grid {
+  display: grid;
+}
+
+/// Post - Post Nav
+.post-nav {
+  --post-nav-ta: center;
+
+  text-align: var(--post-nav-ta);
+  color: var(--clr-gray-50);
+  background-color: var(--clr-primary-900);
+  padding: var(--size-v-400);
+}
+
+/// Post - Post Nav List
+.post-nav-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/// Post - Content Cell
+.post-cell-content {
+  padding: var(--size-v-400);
+}
+
+/// Post - Post List
+.post-list {
+  display: grid;
+  grid-template-columns: auto;
+  gap: var(--size-v-400);
+}
+
+/// Post - Post Article
+.post-article {
+  --article-ta: center;
+
+  display: grid;
+  gap: var(--size-v-300);
+  padding: var(--size-v-400);
+  background-color: var(--clr-gray-100);
+  text-align: var(--article-ta);
+}
+
+/// Post - Post Article Header
+.post-article__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-v-200);
+}
+
+/// Post - Article Date
+.article-date {
+  color: var(--clr-gray-800);
+  font-size: var(--fz-post-date);
+  font-style: italic;
+}
+
+/// Post - Pagination Cell
+.post-cell-pagination {
+  text-align: center;
+  padding-block: var(--size-v-400);
+}
+
+/// Post - Pagination
+.pagination-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Post - Button Cell
+.post-cell-button {
+  text-align: center;
+  padding-bottom: var(--size-v-400);
+}
+
+/// Post - Blockquote
+.blockquote {
+  background-color: var(--clr-primary-50);
+  border-left: 2px solid var(--clr-secondary-400);
+  padding: var(--size-v-400);
+}
+
+@media screen and (min-width: breakpoint("tablet")) {
+  .post-grid-archive {
+    grid-template-columns: 0.2fr 0.8fr;
+    grid-template-rows: repeat(3, max-content);
+  }
+
+  .post-cell-nav {
+    grid-row: 1 / -1;
+    padding: var(--size-v-500) var(--size-v-400);
+  }
+
+  .post-nav {
+    --post-nav-ta: left;
+  }
+
+  .post-nav-list[role="list"] {
+    display: block;
+    list-style: disc;
+    padding-left: var(--size-v-500);
+  }
+
+  .post-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .post-article {
+    --article-ta: left;
+  }
+
+  .post-article__header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

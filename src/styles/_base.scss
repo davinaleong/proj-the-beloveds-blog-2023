@@ -1,0 +1,91 @@
+/// Root
+:root {
+  /* Colors */
+  @each $key, $value in $colors {
+    @each $tint-key, $tint-value in $value {
+      --clr-#{$key}-#{$tint-key}: #{$tint-value};
+    }
+  }
+
+  /* Font Families */
+  @each $key, $value in $font-families {
+    --ff-#{$key}: #{$value};
+  }
+
+  /* Font Sizes */
+  @each $key, $value in $font-sizes {
+    --fz-#{$key}: #{$value};
+  }
+
+  /* Font Weights */
+  @each $key, $value in $font-weights {
+    --fw-#{$key}: #{$value};
+  }
+
+  /* Font Styles */
+  @each $key, $value in $font-styles {
+    --fs-#{$key}: #{$value};
+  }
+
+  /* Fixed Spacers */
+  @each $key, $value in $fixed-spacers {
+    --size-f-#{$key}: #{$value};
+  }
+
+  /* Variable Spacers */
+  @each $key, $value in $variable-spacers {
+    --size-v-#{$key}: #{$value};
+  }
+
+  /* Breakpoints */
+  @each $key, $value in $breakpoints {
+    --bp-#{$key}: #{$value};
+  }
+
+  --primary-header-height: 5rem;
+  --primary-header-expanded-height: 21.75rem;
+  --primary-footer-height: 6.563rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+.body {
+  font-family: var(--ff-primary);
+  font-size: var(--fz-body);
+  font-weight: var(--fw-400);
+  font-style: var(--fs-normal);
+  position: relative;
+}
+
+:focus {
+  outline: 3px solid var(--clr-secondary-400);
+}
+
+.container-fluid {
+  --container-padding-inline: var(--size-v-400);
+
+  padding-inline: var(--container-padding-inline);
+  margin-inline: auto;
+}
+
+.container {
+  --container-padding-inline: var(--size-v-400);
+  --container-width: var(--bp-desktop);
+
+  padding-inline: var(--container-padding-inline);
+  margin-inline: auto;
+  width: min(100%, var(--container-width));
+}
+
+.container-no-padding {
+  --container-padding-inline: var(--size-v-0);
+}
+
+.main {
+  min-height: calc(
+    100vh - var(--primary-header-height) - var(--primary-footer-height)
+  );
+}
