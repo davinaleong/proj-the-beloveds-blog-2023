@@ -1,6 +1,7 @@
 ---
 import "./../styles/main.scss"
 import LinkAstroComponent from "./../components/link.astro"
+import ButtonAstroComponent from "./../components/button.astro"
 ---
 
 <html lang="en">
@@ -14,6 +15,14 @@ import LinkAstroComponent from "./../components/link.astro"
 	<body>
 		<h1>Astro</h1>
 
+		<ButtonAstroComponent className="btn-primary-menu" dataElement="btn-primary-menu">
+			<svg class="bars" viewBox="-10 -10 120 120" width="32">
+				<path
+				  class="line"
+				  d="m 20 40 h 60 a 1 1 0 0 1 0 20 h -60 a 1 1 0 0 1 0 -40 h 30 v 70"
+				></path>
+			</svg>
+		</ButtonAstroComponent>
 		<LinkAstroComponent className="btn-primary-nav" href="#">Home</LinkAstroComponent>
 	</body>
 </html>
