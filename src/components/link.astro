@@ -1,0 +1,7 @@
+---
+const label: any = Astro.props;
+const href: any = Astro.props;
+const className: any = Astro.props;
+const target: any = Astro.props.target ? Astro.props.target : "_self";
+---
+<a href={href} class={"btn " + className}>{label}</a>
