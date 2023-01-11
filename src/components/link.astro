@@ -1,9 +1,7 @@
 ---
-const {
-    label = "Link",
-    href = "#",
-    className = "",
-    target = "_self"
-} = Astro.props
+const { href = "#", className = "", target = "_self" } = Astro.props
 ---
-<a href={href} class={"btn " + className} target={target}>{label}</a>
+
+<a href={href} class={"btn " + className} target={target}>
+  <slot />
+</a>
