@@ -1,7 +1,6 @@
 ---
 import "./../styles/main.scss"
-import LinkAstroComponent from "./../components/link.astro"
-import ButtonAstroComponent from "./../components/button.astro"
+import HeaderAstroComponent from "./../components/header.astro"
 ---
 
 <html lang="en">
@@ -10,19 +9,10 @@ import ButtonAstroComponent from "./../components/button.astro"
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
 
-		<ButtonAstroComponent className="btn-primary-menu" dataElement="btn-primary-menu">
-			<svg class="bars" viewBox="-10 -10 120 120" width="32">
-				<path
-				  class="line"
-				  d="m 20 40 h 60 a 1 1 0 0 1 0 20 h -60 a 1 1 0 0 1 0 -40 h 30 v 70"
-				></path>
-			</svg>
-		</ButtonAstroComponent>
-		<LinkAstroComponent className="btn-primary-nav" href="#">Home</LinkAstroComponent>
+		<title>The Beloved's Blog</title>
+	</head>
+	<body id="top">
+		<HeaderAstroComponent />
 	</body>
 </html>

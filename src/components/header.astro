@@ -1,0 +1,51 @@
+---
+import LinkAstroComponent from "./../components/link.astro"
+import ButtonAstroComponent from "./../components/button.astro"
+---
+<header class="primary-header" data-element="primary-header">
+    <div class="container primary-header-container">
+        <LinkAstroComponent href="/" className="btn-primary-brand btn-slide">
+            <div class="brand-icon"></div>
+            The Beloved's Blog
+        </LinkAstroComponent>
+
+        <ButtonAstroComponent className="btn-primary-menu" dataElement="btn-primary-menu">
+            <svg class="bars" viewBox="-10 -10 120 120" width="32">
+                <path
+                  class="line"
+                  d="m 20 40 h 60 a 1 1 0 0 1 0 20 h -60 a 1 1 0 0 1 0 -40 h 30 v 70"
+                ></path>
+            </svg>
+        </ButtonAstroComponent>
+
+        <nav class="primary-nav">
+            <ul class="primary-nav__list" role="list">
+                <li class="primary-nav__list__item">
+                    <LinkAstroComponent href="/about" className="btn-primary-nav">
+                        About
+                    </LinkAstroComponent>
+                </li>
+                <li class="primary-nav__list__item">
+                    <LinkAstroComponent href="/post" className="btn-primary-nav">
+                        Latest Post
+                    </LinkAstroComponent>
+                </li>
+                <li class="primary-nav__list__item">
+                    <LinkAstroComponent href="/archive" className="btn-primary-nav">
+                        Archive
+                    </LinkAstroComponent>
+                </li>
+                <li class="primary-nav__list__item">
+                    <LinkAstroComponent href="/contact" className="btn-primary-nav">
+                        Contact
+                    </LinkAstroComponent>
+                </li>
+                <li class="primary-nav__list__item">
+                    <ButtonAstroComponent className="btn-secondary btn-slide" dataElement="btn-subscribe">
+                        Subscribe
+                    </ButtonAstroComponent>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
