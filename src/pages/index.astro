@@ -1,4 +1,6 @@
 ---
+import "./../styles/main.scss"
+import LinkAstroComponent from "./../components/link.astro"
 ---
 
 <html lang="en">
@@ -11,5 +13,7 @@
 	</head>
 	<body>
 		<h1>Astro</h1>
+
+		<LinkAstroComponent label="Home" className="btn-primary-nav" href="#"/>
 	</body>
 </html>
