@@ -1,0 +1,41 @@
+---
+import featuredImgBible from "./../styles/images/featured-image-bible.jpg"
+import featuredImgFlowers from "./../styles/images/featured-image-flowers.jpg"
+import featuredImgCross from "./../styles/images/featured-image-cross.jpg"
+
+import LinkAstroComponent from "./../components/link.component.astro"
+
+const { id, featured } = Astro.props
+const { title, summary } = featured
+---
+<section id={id} class="section section-featured">
+    <div class="container container-section container-featured">
+        <div class="featured-gallery">
+            <img
+                src={featuredImgBible}
+                alt=""
+                class="featured-image-one"
+            />
+            <img
+                src={featuredImgFlowers}
+                alt=""
+                class="featured-image-two"
+            />
+            <img
+                src={featuredImgCross}
+                alt=""
+                class="featured-image-three"
+            />
+        </div>
+        <article class="featured-content">
+            <h2 class="heading heading-section">[Featured Post]</h2>
+            <h3 class="heading heading-sub m-f-b-400">{title}</h3>
+            <p class="m-f-b-400">{summary}</p>
+            <p>
+                <LinkAstroComponent href="#" className="btn-secondary btn-slide">
+                    Read more <i class="fa-solid fa-chevron-right"></i>
+                </LinkAstroComponent>
+            </p>
+        </article>
+    </div>
+</section>
