@@ -1,0 +1,24 @@
+---
+import dayjs from "dayjs"
+
+import LinkAstroComponent from "./link.component.astro"
+
+const { post } = Astro.props
+const { title, summary, published_at } = post
+
+const publishedAt = dayjs(published_at).format(import.meta.env.DATE_FORMAT)
+---
+<article class="post-article">
+    <header class="post-article__header">
+        <h3 class="heading heading-article">{title}</h3>
+        <p class="article-date">{publishedAt}</p>
+    </header>
+
+    <p>{summary}</p>
+
+    <p>
+        <LinkAstroComponent href="#" className="btn-secondary-outline btn-slide">
+            Read more <i class="fa-solid fa-chevron-right"></i>
+        </LinkAstroComponent>
+    </p>
+</article>

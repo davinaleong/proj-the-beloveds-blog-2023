@@ -1,0 +1,143 @@
+---
+import ArticleAstroComponent from "./article.component.astro"
+import LinkAstroComponent from "./link.component.astro"
+
+const { latest } = Astro.props
+---
+<section class="section section-post">
+    <div class="container container-no-padding">
+      <div class="post-grid">
+        <div class="post-cell-content">
+          <h2 class="heading heading-section m-f-b-500">[Latests Posts]</h2>
+
+          <ul class="post-list" role="list">
+            <li class="post-list__item">
+              <article class="post-article">
+                <header class="post-article__header">
+                  <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                  <p class="article-date">24 Dec 2022</p>
+                </header>
+
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti quas officia rerum tempora exercitationem esse
+                  nesciunt ratione illo non odio?
+                </p>
+
+                <p>
+                  <a href="#" class="btn btn-secondary-outline btn-slide">
+                    Read more <i class="fa-solid fa-chevron-right"></i>
+                  </a>
+                </p>
+              </article>
+            </li>
+            <li class="post-list__item">
+              <article class="post-article">
+                <header class="post-article__header">
+                  <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                  <p class="article-date">24 Dec 2022</p>
+                </header>
+
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti quas officia rerum tempora exercitationem esse
+                  nesciunt ratione illo non odio?
+                </p>
+
+                <p>
+                  <a href="#" class="btn btn-secondary-outline btn-slide">
+                    Read more <i class="fa-solid fa-chevron-right"></i>
+                  </a>
+                </p>
+              </article>
+            </li>
+            <li class="post-list__item">
+              <article class="post-article">
+                <header class="post-article__header">
+                  <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                  <p class="article-date">24 Dec 2022</p>
+                </header>
+
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti quas officia rerum tempora exercitationem esse
+                  nesciunt ratione illo non odio?
+                </p>
+
+                <p>
+                  <a href="#" class="btn btn-secondary-outline btn-slide">
+                    Read more <i class="fa-solid fa-chevron-right"></i>
+                  </a>
+                </p>
+              </article>
+            </li>
+            <li class="post-list__item">
+              <article class="post-article">
+                <header class="post-article__header">
+                  <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                  <p class="article-date">24 Dec 2022</p>
+                </header>
+
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti quas officia rerum tempora exercitationem esse
+                  nesciunt ratione illo non odio?
+                </p>
+
+                <p>
+                  <a href="#" class="btn btn-secondary-outline btn-slide">
+                    Read more <i class="fa-solid fa-chevron-right"></i>
+                  </a>
+                </p>
+              </article>
+            </li>
+            <li class="post-list__item">
+              <article class="post-article">
+                <header class="post-article__header">
+                  <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                  <p class="article-date">24 Dec 2022</p>
+                </header>
+
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti quas officia rerum tempora exercitationem esse
+                  nesciunt ratione illo non odio?
+                </p>
+
+                <p>
+                  <a href="#" class="btn btn-secondary-outline btn-slide">
+                    Read more <i class="fa-solid fa-chevron-right"></i>
+                  </a>
+                </p>
+              </article>
+            </li>
+            <li class="post-list__item">
+              <article class="post-article">
+                <header class="post-article__header">
+                  <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                  <p class="article-date">24 Dec 2022</p>
+                </header>
+
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Deleniti quas officia rerum tempora exercitationem esse
+                  nesciunt ratione illo non odio?
+                </p>
+
+                <p>
+                  <a href="#" class="btn btn-secondary-outline btn-slide">
+                    Read more <i class="fa-solid fa-chevron-right"></i>
+                  </a>
+                </p>
+              </article>
+            </li>
+          </ul>
+        </div>
+        <div class="post-cell-button">
+            <LinkAstroComponent href="/archive" className="btn-secondary-outline btn-slide">
+                See more posts <i class="fa-solid fa-chevron-right"></i>
+            </LinkAstroComponent>
+        </div>
+      </div>
+    </div>
+</section>

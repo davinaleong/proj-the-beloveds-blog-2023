@@ -28,7 +28,9 @@ const { meta_title, meta_description, meta_author, meta_keywords, title, release
 	</head>
 	<body id="top">
 		<HeaderAstroComponent title={title} />
-        <slot />
+        <main class="main">
+			<slot />
+		</main>
 		<FooterAstroComponent title={title} metaAuthor={meta_author} releasedAt={released_at} />
 
         <DialogAstroComponent />

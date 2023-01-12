@@ -15,6 +15,7 @@
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
+    "dayjs": "^1.11.7",
     "sass": "^1.57.1"
   }
 }
