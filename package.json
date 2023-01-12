@@ -11,10 +11,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^1.9.0"
+    "astro": "^1.9.0",
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
-    "dotenv": "^16.0.3",
     "sass": "^1.57.1"
   }
 }
