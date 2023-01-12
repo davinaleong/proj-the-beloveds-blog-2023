@@ -1,12 +1,5 @@
 console.log(`main.js loaded`)
 
-/// Constants
-const siteDetails = {
-  siteName: `The Beloved's Blog`,
-  author: `Davina Leong`,
-  yearStarted: 2022,
-}
-
 /// Variables
 /// Variables - Attributes
 const dataElementAttr = `data-element`
@@ -21,9 +14,6 @@ const btnPrimaryMenuEl = document.querySelector(
 )
 const btnSubscribeEl = document.querySelector(
   `[${dataElementAttr}="btn-subscribe"]`
-)
-const primaryFooterEl = document.querySelector(
-  `[${dataElementAttr}="primary-footer"]`
 )
 const subscribeModalEl = document.querySelector(
   `[${dataElementAttr}="subscribe-modal"]`
@@ -50,8 +40,6 @@ btnCloseModalEl
 subscribeFormEl.addEventListener(`submit`, (event) =>
   subscribeFormHandler(event)
 )
-
-renderCopyrightDate()
 resetSubcribeForm()
 
 function togglePrimaryHeader() {
@@ -96,19 +84,4 @@ function subscribeFormHandler(event) {
       <p class="form-status__error">Please input your email!</p>
     `
   }
-}
-
-function renderCopyrightDate() {
-  const { siteName, author, yearStarted } = siteDetails
-  const now = new Date()
-  const yearStr =
-    now.getFullYear() > yearStarted
-      ? `${yearStarted} - ${now.getFullYear()}`
-      : yearStarted
-
-  primaryFooterEl.querySelector(`.container`).innerHTML = `
-    <p class="ta-center fz-copyright">
-        <em>${siteName} &copy; ${author}, ${yearStr}.</em>
-    </p>
-    `
 }
