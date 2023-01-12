@@ -1,0 +1,28 @@
+---
+import "./../styles/main.scss"
+import HeaderAstroComponent from "./../components/header.component.astro"
+import FooterAstroComponent from "./../components/footer.component.astro"
+
+const response = await fetch(`${import.meta.env.APP_URL}`)
+const data = await response.json()
+const { meta_title, meta_description, meta_author, meta_keywords, title, released_at } = data.apps[0]
+---
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="author" content={meta_author}/>
+		<meta name="description" content={meta_description}/>
+		<meta name="keywords" content={meta_keywords}/>
+		
+		<title>{meta_title}</title>
+
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body id="top">
+		<HeaderAstroComponent title={title} />
+        <slot />
+		<FooterAstroComponent title={title} metaAuthor={meta_author} releasedAt={released_at} />
+	</body>
+</html>
