@@ -1,7 +1,11 @@
 ---
 import "./../styles/main.scss"
+import favicon from "./../styles/images/favicon-32x32.png"
+
 import HeaderAstroComponent from "./../components/header.component.astro"
 import FooterAstroComponent from "./../components/footer.component.astro"
+import DialogAstroComponent from "./../components/dialog.component.astro"
+import LinkAstroComponent from "./../components/link.component.astro"
 
 const response = await fetch(`${import.meta.env.APP_URL}`)
 const data = await response.json()
@@ -18,11 +22,18 @@ const { meta_title, meta_description, meta_author, meta_keywords, title, release
 		
 		<title>{meta_title}</title>
 
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="shortcut icon" type="image/png" href={favicon} />
+
+        <script src="https://kit.fontawesome.com/1b82ea5cb2.js" crossorigin="anonymous"></script>
 	</head>
 	<body id="top">
 		<HeaderAstroComponent title={title} />
         <slot />
 		<FooterAstroComponent title={title} metaAuthor={meta_author} releasedAt={released_at} />
+
+        <DialogAstroComponent />
+        <LinkAstroComponent href="#top" className="btn-top">
+            <i class="fa-solid fa-chevron-up"></i>
+        </LinkAstroComponent>
 	</body>
 </html>

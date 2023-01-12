@@ -1,0 +1,41 @@
+---
+import ButtonAstroComponent from "./button.component.astro"
+---
+<dialog class="modal" data-element="subscribe-modal">
+    <form action="" class="modal-form modal-dialog">
+        <ButtonAstroComponent className="btn-close-modal" dataElement="btn-close-modal">
+            <i class="fa-solid fa-xmark"></i>
+        </ButtonAstroComponent>
+
+        <h2 class="heading heading-modal">Subscribe!</h2>
+        <p class="m-v-b-400">
+            Enter your email below to be notified of new articles!
+        </p>
+        <p class="m-v-b-400">
+            Upon subscribing, you'll recieve an email to verify that you're not a
+            robot. Only upon verifying your email will you recieve notifications.
+        </p>
+
+        <div class="form-group">
+            <label for="email" class="visually-hidden">Your Email</label>
+            <div class="input-group">
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="form-input"
+                    placeholder="name@example.com"
+                    required
+                />
+                <ButtonAstroComponent type="submit" className="btn-secondary btn-slide">
+                    Submit <i class="fa-solid fa-check"></i>
+                </ButtonAstroComponent>
+            </div>
+        </div>
+
+        <div class="m-v-t-400" data-element="subscribe-form-status">
+            <p class="form-status__error">Error message</p>
+            <p class="form-status__success">Success message</p>
+        </div>
+    </form>
+</dialog>
