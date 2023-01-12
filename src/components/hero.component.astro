@@ -1,0 +1,19 @@
+---
+import LinkAstroComponent from "./link.component.astro"
+
+const { page, sectionClassName, containerClassName } = Astro.props
+const { title, subtitle } = page
+---
+<section class={"section-hero " + sectionClassName}>
+    <div class={"container " + containerClassName}>
+        <h1 class="heading heading-hero">{title}</h1>
+
+        { subtitle && <div class="hero-divider m-v-y-300"></div>}
+        { subtitle && <p class="fs-italic">{subtitle}</p> }
+
+        <LinkAstroComponent href="#next" className="btn-hero">
+            <i class="fa-solid fa-chevron-down hero-chevron-one"></i>
+            <i class="fa-solid fa-chevron-down hero-chevron-two"></i>
+        </LinkAstroComponent>
+    </div>
+</section>
