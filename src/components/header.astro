@@ -1,12 +1,14 @@
 ---
 import LinkAstroComponent from "./../components/link.astro"
 import ButtonAstroComponent from "./../components/button.astro"
+
+const { title } = Astro.props
 ---
 <header class="primary-header" data-element="primary-header">
     <div class="container primary-header-container">
         <LinkAstroComponent href="/" className="btn-primary-brand btn-slide">
             <div class="brand-icon"></div>
-            The Beloved's Blog
+            {title}
         </LinkAstroComponent>
 
         <ButtonAstroComponent className="btn-primary-menu" dataElement="btn-primary-menu">

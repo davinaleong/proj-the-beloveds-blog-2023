@@ -1,10 +1,20 @@
 ---
+const { title, metaAuthor, releasedAt } = Astro.props
 
+let thisReleasedAt = import.meta.env.APP_RELEASED_AT
+if (releasedAt && releasedAt !== "") {
+    thisReleasedAt = releasedAt
+}
+
+const releasedYear = Number(new Date(`${thisReleasedAt}T00:00:00Z`).getFullYear())
+const nowYear = Number(new Date().getFullYear())
+
+const copyrightYear = nowYear !== releasedYear ? `${releasedYear} - ${nowYear}` : releasedYear
 ---
 <footer class="primary-footer" data-element="primary-footer">
     <div class="container primary-footer-container">
         <p class="ta-center fz-copyright">
-            <em>The Beloved's Blog &copy; Davina Leong.</em>
+            <em>{title} &copy; {metaAuthor}, {copyrightYear}.</em>
         </p>
     </div>
 </footer>

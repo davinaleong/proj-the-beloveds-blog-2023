@@ -5,7 +5,7 @@ import FooterAstroComponent from "./../components/footer.astro"
 
 const response = await fetch(`${import.meta.env.APP_URL}`)
 const data = await response.json()
-const { meta_title, meta_description, meta_author, meta_keywords } = data.apps[0]
+const { meta_title, meta_description, meta_author, meta_keywords, title, released_at } = data.apps[0]
 ---
 
 <html lang="en">
@@ -22,8 +22,8 @@ const { meta_title, meta_description, meta_author, meta_keywords } = data.apps[0
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	</head>
 	<body id="top">
-		<HeaderAstroComponent />
+		<HeaderAstroComponent title={title} />
 
-		<FooterAstroComponent />
+		<FooterAstroComponent title={title} metaAuthor={meta_author} releasedAt={released_at} />
 	</body>
 </html>
