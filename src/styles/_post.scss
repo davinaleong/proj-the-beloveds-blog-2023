@@ -113,10 +113,16 @@
 
   .post-list {
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .post-list:has(.post-list__item:nth-child(7)) {
+    grid-template-rows: repeat(5, 1fr);
   }
 
   .post-article {
     --article-ta: left;
+    min-height: 100%;
   }
 
   .post-article__header {

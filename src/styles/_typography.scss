@@ -21,6 +21,54 @@ a,
   }
 }
 
+h1,
+.h1 {
+  font-size: var(--fz-h1);
+  font-weight: var(--fw-regular);
+  margin-bottom: var(--size-v-300);
+}
+
+h2,
+.h2 {
+  font-size: var(--fz-h2);
+  font-weight: var(--fw-regular);
+  margin-bottom: var(--size-v-300);
+}
+
+h3,
+.h3 {
+  font-size: var(--fz-h3);
+  font-weight: var(--fw-regular);
+  margin-bottom: var(--size-v-300);
+}
+
+h4,
+.h4 {
+  font-size: var(--fz-h4);
+  font-weight: var(--fw-regular);
+  margin-bottom: var(--size-v-300);
+}
+
+h5,
+.h5 {
+  font-size: var(--fz-h5);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--size-v-300);
+}
+
+h6,
+.h6 {
+  font-size: var(--fz-h6);
+  font-weight: var(--fw-regular);
+  font-style: italic;
+  margin-bottom: var(--size-v-300);
+}
+
+p,
+.p {
+  margin-bottom: var(--size-v-300);
+}
+
 strong,
 .strong {
   font-weight: var(--fw-bold);
@@ -29,6 +77,11 @@ strong,
 em,
 .em {
   font-style: var(--fs-italic);
+}
+
+small,
+.small {
+  font-size: 0.8em;
 }
 
 /// Typography - Headings
@@ -79,4 +132,8 @@ em,
 .heading-modal {
   --heading-clr: var(--clr-secondary-400);
   --heading-fz: var(--fz-modal-heading);
+}
+
+.section-content .heading {
+  --heading-clr: var(--clr-primary-800);
 }

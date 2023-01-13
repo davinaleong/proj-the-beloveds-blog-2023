@@ -20,12 +20,13 @@
 
 .section-featured {
   --section-clr: var(--clr-primary-900);
-  --section-bg-clr: var(--clr-primary-50);
+  --section-bg-clr: var(--clr-primary-100);
   --section-height: 35vh;
 }
 
 .section-content {
   --section-height: 50vh;
+  --section-bg-clr: var(--clr-primary-100);
 }
 
 /// Sections - Containers
