@@ -1,12 +1,10 @@
 ---
-const { id, sectionClassName, containerClassName, content } = Astro.props
----
-<section id="next" class={"section " + sectionClassName}>
-    <div class={"container " + containerClassName}>
-        <h2 class="heading heading-sub">Lorem Ipsum Dolor</h2>
-        <p class="m-v-b-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, nam placeat! Et delectus iusto repudiandae cumque nisi praesentium voluptatem, saepe voluptates provident quia qui maxime beatae aspernatur molestias in consequatur nemo quis quaerat nesciunt? Atque animi est at! Fugiat similique delectus saepe tenetur facere beatae iure tempora! Iusto, quam officiis!</p>
+import { marked } from 'marked'
 
-        <h2 class="heading heading-sub">Lorem Ipsum Dolor</h2>
-        <p class="m-v-b-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, nam placeat! Et delectus iusto repudiandae cumque nisi praesentium voluptatem, saepe voluptates provident quia qui maxime beatae aspernatur molestias in consequatur nemo quis quaerat nesciunt? Atque animi est at! Fugiat similique delectus saepe tenetur facere beatae iure tempora! Iusto, quam officiis!</p>
-    </div>
+const { id, sectionClassName, containerClassName, page } = Astro.props
+const { text } = page
+const content = marked.parse(text)
+---
+<section id={id} class={"section " + sectionClassName}>
+    <div class={"container " + containerClassName} set:html={content} />
 </section>

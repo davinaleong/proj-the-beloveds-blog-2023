@@ -3,7 +3,7 @@ import LinkAstroComponent from "./link.component.astro"
 
 const { page, sectionClassName, containerClassName } = Astro.props
 const { title, subtitle } = page
-const subtitleHtml = subtitle.replace(/(?:\r\n|\r|\n)/g, '<br/>')
+const subtitleHtml = subtitle ? subtitle.replace(/(?:\r\n|\r|\n)/g, '<br/>') : ``
 ---
 <section class={"section-hero " + sectionClassName}>
     <div class={"container " + containerClassName}>
