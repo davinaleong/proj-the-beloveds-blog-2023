@@ -2,7 +2,11 @@
 import LinkAstroComponent from "./../components/link.component.astro"
 import ButtonAstroComponent from "./../components/button.component.astro"
 
-const { title } = Astro.props
+const { title, latest } = Astro.props
+let slug = ``
+if (latest) {
+    slug = latest.slug
+}
 ---
 <header class="primary-header" data-element="primary-header">
     <div class="container primary-header-container">
@@ -28,7 +32,7 @@ const { title } = Astro.props
                     </LinkAstroComponent>
                 </li>
                 <li class="primary-nav__list__item">
-                    <LinkAstroComponent href="/post" className="btn-primary-nav">
+                    <LinkAstroComponent href="/post?slug={slug}" className="btn-primary-nav">
                         Latest Post
                     </LinkAstroComponent>
                 </li>

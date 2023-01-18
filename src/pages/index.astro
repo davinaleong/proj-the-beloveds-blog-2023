@@ -8,7 +8,7 @@ const response = await fetch(`${import.meta.env.BLOG_API_URL}home`)
 const data = await response.json()
 const { featured, page, latest } = data
 ---
-<MainAstroLayout>
+<MainAstroLayout lastest={latest}>
 	<HeroAstroComponent page={page} sectionClassName="section-hero-home" containerClassName="container-hero"/>
 	<FeaturedAstroComponent id="next" featured={featured}/>
 	<LatestAstroComponent latest={latest} />
