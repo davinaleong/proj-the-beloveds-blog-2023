@@ -2,8 +2,10 @@ console.log(`main.js loaded`)
 
 /// Variables
 /// Variables - Attributes
+const apiUrl = `https://davinas-cms.herokuapp.com/api/`
 const dataElementAttr = `data-element`
 const ariaExpandedAttr = `aria-expanded`
+const disabledAttr = `disabled`
 const formEl = `form`
 const svgEl = `svg`
 const iEl = `i`
@@ -81,26 +83,83 @@ function resetSubcribeForm() {
   const emailEl = subscribeFormEl.elements[`email`]
   emailEl.value = ``
 
+  disableSubscribeForm(false)
+
   subscribeFormStatusEl.innerHTML = ``
 }
 
-function subscribeFormHandler(event) {
+function disableSubscribeForm(disable) {
+  const submitBtnEl = subscribeFormEl.querySelector(`button[type="submit"]`)
+
+  if (disable) {
+    submitBtnEl.setAttribute(disabledAttr, true)
+  } else {
+    submitBtnEl.removeAttribute(disabledAttr)
+  }
+}
+
+async function subscribeFormHandler(event) {
   console.log(`fn: subscribeFormHandler`)
 
+  event.preventDefault()
+  disableSubscribeForm(true)
   subscribeFormStatusEl.innerHTML = ``
 
-  event.preventDefault()
+  const form = event.currentTarget
+  const url = form.action
+  console.log(form, url)
 
-  const emailEl = subscribeFormEl.elements[`email`]
-  if (emailEl.value && emailEl.value !== ``) {
-    subscribeFormStatusEl.innerHTML = `
-      <p class="form-status__success">Thank you for subscribing!</p>
-    `
-  } else {
-    subscribeFormStatusEl.innerHTML = `
-      <p class="form-status__error">Please input your email!</p>
-    `
+  try {
+    const formData = new FormData(form)
+    const responseData = await postFormDataAsJson({ url, formData })
+    console.log(responseData)
+
+    const { message, status, errors } = responseData
+    if (errors && errors.email && errors.email.length > 0) {
+      subscribeFormStatusEl.innerHTML = `
+        <p class="form-status__error">${message}</p>
+      `
+
+      disableSubscribeForm(false)
+      return
+    }
+
+    if (status) {
+      if (status === "ERROR") {
+        subscribeFormStatusEl.innerHTML = `
+          <p class="form-status__error">${message}</p>
+        `
+
+        disableSubscribeForm(false)
+        return
+      } else {
+        subscribeFormStatusEl.innerHTML = `
+          <p class="form-status__success">Thank you for subscribing!</p>
+        `
+        return
+      }
+    }
+  } catch (error) {
+    console.error(error)
   }
+}
+
+async function postFormDataAsJson({ url, formData }) {
+  const plainFormData = Object.fromEntries(formData.entries())
+  const formDataJsonString = JSON.stringify(plainFormData)
+  console.log(formData, plainFormData, formDataJsonString)
+
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: formDataJsonString,
+  }
+
+  const response = await fetch(url, fetchOptions)
+  return response.json()
 }
 
 async function renderArchive(archiveEl) {
@@ -113,7 +172,7 @@ async function renderArchive(archiveEl) {
     const selectedPage = urlParams.get("page")
 
     const response = await fetch(
-      `https://davinas-cms.herokuapp.com/api/blog/archive/${selectedYear}?page=${selectedPage}`
+      `${apiUrl}blog/archive/${selectedYear}?page=${selectedPage}`
     )
     const data = await response.json()
     const { years, posts } = data
@@ -264,7 +323,7 @@ async function renderPost(postEl) {
     console.log(selectedSlug)
 
     const response = await fetch(
-      `https://davinas-cms.herokuapp.com/api/blog/posts/${selectedSlug}`
+      `${apiUrl}blog/posts/${selectedSlug}`
     )
     const data = await response.json()
 

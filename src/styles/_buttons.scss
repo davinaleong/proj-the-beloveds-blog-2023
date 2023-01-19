@@ -351,3 +351,18 @@
   --btn-hover-bg-clr: var(--clr-secondary-300);
   --btn-hover-border-clr: var(--clr-secondary-300);
 }
+
+/// Buttons - Disabled
+.btn[disabled] {
+  --btn-clr: var(--clr-gray-50);
+  --btn-bg-clr: var(--clr-gray-500);
+  --btn-border-clr: var(--clr-gray-500);
+
+  --btn-hover-clr: var(--clr-gray-50);
+  --btn-hover-bg-clr: var(--clr-gray-500);
+  --btn-hover-border-clr: var(--clr-gray-500);
+
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+

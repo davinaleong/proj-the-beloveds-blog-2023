@@ -2,9 +2,12 @@
 const {
     className = "",
     dataElement = "",
-    type = "button"
+    type = "button",
+    disabled = "0"
 } = Astro.props
+
+const disabledAttr = (disabled === "1")
 ---
-<button class={"btn " + className} type={type} data-element={dataElement}>
+<button class={"btn " + className} type={type} data-element={dataElement} disabled={disabledAttr}>
     <slot/>
 </button>

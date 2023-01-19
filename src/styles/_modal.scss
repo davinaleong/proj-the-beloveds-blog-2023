@@ -35,6 +35,14 @@
     color: var(--clr-primary-800);
     border: thin solid var(--clr-secondary-400);
     background-color: var(--clr-primary-50);
+
+    &[disabled] {
+      color: var(--clr-gray-700);
+      border: thin solid var(--clr-gray-500);
+      background-color: var(--clr-gray-50);
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
   }
 }
 
@@ -42,11 +50,9 @@
 .form-status__error {
   color: var(--clr-danger-500);
   font-size: var(--fz-form-status);
-  font-style: italic;
 }
 
 .form-status__success {
   color: var(--clr-success-500);
   font-size: var(--fz-form-status);
-  font-style: italic;
 }
