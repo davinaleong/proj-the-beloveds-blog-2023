@@ -10,7 +10,7 @@ import LinkAstroComponent from "./../components/link.component.astro"
 const response = await fetch(`${import.meta.env.APP_URL}`)
 const data = await response.json()
 const { meta_title, meta_description, meta_author, meta_keywords, title, released_at } = data.apps[0]
-const { latest, years } = Astro.props
+const { latest, years, pageClass } = Astro.props
 ---
 <html lang="en">
 	<head>
@@ -28,7 +28,7 @@ const { latest, years } = Astro.props
 		<script is:inline defer src="./scripts/main.js"></script>
         <script src="https://kit.fontawesome.com/1b82ea5cb2.js" crossorigin="anonymous"></script>
 	</head>
-	<body id="top" class="body">
+	<body id="top" class={"body " + pageClass}>
 		<HeaderAstroComponent title={title} latest={latest} years={years} />
         <main class="main">
 			<slot />

@@ -4,8 +4,12 @@ console.log(`main.js loaded`)
 /// Variables - Attributes
 const dataElementAttr = `data-element`
 const ariaExpandedAttr = `aria-expanded`
+const formEl = `form`
+const svgEl = `svg`
+const iEl = `i`
 
 /// Variables - Elements
+const bodyEl = document.body
 const primaryHeaderEl = document.querySelector(
   `[${dataElementAttr}="primary-header"]`
 )
@@ -22,30 +26,37 @@ const subscribeModalEl = document.querySelector(
 const btnCloseModalEl = subscribeModalEl.querySelector(
   `[${dataElementAttr}="btn-close-modal"]`
 )
-const subscribeFormEl = subscribeModalEl.querySelector(`form`)
+const subscribeFormEl = subscribeModalEl.querySelector(formEl)
 const subscribeFormStatusEl = subscribeModalEl.querySelector(
   `[${dataElementAttr}="subscribe-form-status"]`
 )
 
+const archiveEl = document.querySelector(`[${dataElementAttr}="archive"]`)
+
+// Add event listeners
 btnPrimaryMenuEl
-  .querySelector(`svg`)
+  .querySelector(svgEl)
   .addEventListener(`click`, (event) => togglePrimaryHeader())
 
 btnSubscribeEl.addEventListener(`click`, (event) =>
   subscribeModalEl.showModal()
 )
 btnCloseModalEl
-  .querySelector(`i`)
+  .querySelector(iEl)
   .addEventListener(`click`, (event) => resetSubcribeForm())
 subscribeFormEl.addEventListener(`submit`, (event) =>
   subscribeFormHandler(event)
 )
-resetSubcribeForm()
 
+resetSubcribeForm()
+renderArchive(archiveEl)
+
+// Functions
 function togglePrimaryHeader() {
+  console.log(`fn: togglePrimaryHeader`)
+
   const ariaExpanded = primaryHeaderEl.getAttribute(ariaExpandedAttr)
   const btnAriaExpanded = btnPrimaryMenuEl.getAttribute(ariaExpandedAttr)
-  console.log(ariaExpanded)
 
   if (ariaExpanded) {
     primaryHeaderEl.removeAttribute(ariaExpandedAttr)
@@ -61,6 +72,8 @@ function togglePrimaryHeader() {
 }
 
 function resetSubcribeForm() {
+  console.log(`fn: resetSubcribeForm`)
+
   subscribeModalEl.close()
 
   const emailEl = subscribeFormEl.elements[`email`]
@@ -70,6 +83,8 @@ function resetSubcribeForm() {
 }
 
 function subscribeFormHandler(event) {
+  console.log(`fn: subscribeFormHandler`)
+
   subscribeFormStatusEl.innerHTML = ``
 
   event.preventDefault()
@@ -84,4 +99,291 @@ function subscribeFormHandler(event) {
       <p class="form-status__error">Please input your email!</p>
     `
   }
+}
+
+async function renderArchive(archiveEl) {
+  console.log(`fn: renderArchive`)
+
+  let html = ``
+  if (archiveEl) {
+    const urlParams = new URLSearchParams(window.location.search)
+    const selectedYear = urlParams.get("year")
+    const selectedPage = urlParams.get("page")
+
+    const response = await fetch(
+      `https://davinas-cms.herokuapp.com/api/blog/archive/${selectedYear}?page=${selectedPage}`
+    )
+    const data = await response.json()
+    const { years, posts } = data
+
+    let url = ``
+    let yearsHtml = ``
+    years.forEach(yearItem => {
+      const { year } = yearItem
+      const active = Number(year) === Number(selectedYear) ? `btn-post-nav-active` : ``
+
+      url = `/archive?year=${year}&page=1`
+      yearsHtml += `
+        <li class="post-nav-list__item">
+          <a href="${url}" class="btn btn-post-nav ${active}">${year}</a>
+        </li>
+      `
+    })
+    
+    html = `
+    <section class="section section-post">
+        <div class="container container-no-padding">
+          <div class="post-grid post-grid-archive">
+            <div class="post-cell-nav">
+              <nav class="post-nav">
+                <h2 class="heading heading-year">Year</h2>
+                <ul class="post-nav-list" role="list">${yearsHtml}</ul>
+              </nav>
+            </div>
+            <div class="post-cell-content">
+              <h2 class="heading heading-section m-f-b-500">[2022]</h2>
+
+              <ul class="post-list" role="list">
+                <li class="post-list__item">
+                  <article class="post-article">
+                    <header class="post-article__header">
+                      <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                      <p class="article-date">24 Dec 2022</p>
+                    </header>
+
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Deleniti quas officia rerum tempora exercitationem esse
+                      nesciunt ratione illo non odio?
+                    </p>
+
+                    <p>
+                      <a href="#" class="btn btn-secondary-outline btn-slide">
+                        Read more <i class="fa-solid fa-chevron-right"></i>
+                      </a>
+                    </p>
+                  </article>
+                </li>
+                <li class="post-list__item">
+                  <article class="post-article">
+                    <header class="post-article__header">
+                      <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                      <p class="article-date">24 Dec 2022</p>
+                    </header>
+
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Deleniti quas officia rerum tempora exercitationem esse
+                      nesciunt ratione illo non odio?
+                    </p>
+
+                    <p>
+                      <a href="#" class="btn btn-secondary-outline btn-slide">
+                        Read more <i class="fa-solid fa-chevron-right"></i>
+                      </a>
+                    </p>
+                  </article>
+                </li>
+                <li class="post-list__item">
+                  <article class="post-article">
+                    <header class="post-article__header">
+                      <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                      <p class="article-date">24 Dec 2022</p>
+                    </header>
+
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Deleniti quas officia rerum tempora exercitationem esse
+                      nesciunt ratione illo non odio?
+                    </p>
+
+                    <p>
+                      <a href="#" class="btn btn-secondary-outline btn-slide">
+                        Read more <i class="fa-solid fa-chevron-right"></i>
+                      </a>
+                    </p>
+                  </article>
+                </li>
+                <li class="post-list__item">
+                  <article class="post-article">
+                    <header class="post-article__header">
+                      <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                      <p class="article-date">24 Dec 2022</p>
+                    </header>
+
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Deleniti quas officia rerum tempora exercitationem esse
+                      nesciunt ratione illo non odio?
+                    </p>
+
+                    <p>
+                      <a href="#" class="btn btn-secondary-outline btn-slide">
+                        Read more <i class="fa-solid fa-chevron-right"></i>
+                      </a>
+                    </p>
+                  </article>
+                </li>
+                <li class="post-list__item">
+                  <article class="post-article">
+                    <header class="post-article__header">
+                      <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                      <p class="article-date">24 Dec 2022</p>
+                    </header>
+
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Deleniti quas officia rerum tempora exercitationem esse
+                      nesciunt ratione illo non odio?
+                    </p>
+
+                    <p>
+                      <a href="#" class="btn btn-secondary-outline btn-slide">
+                        Read more <i class="fa-solid fa-chevron-right"></i>
+                      </a>
+                    </p>
+                  </article>
+                </li>
+                <li class="post-list__item">
+                  <article class="post-article">
+                    <header class="post-article__header">
+                      <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                      <p class="article-date">24 Dec 2022</p>
+                    </header>
+
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Deleniti quas officia rerum tempora exercitationem esse
+                      nesciunt ratione illo non odio?
+                    </p>
+
+                    <p>
+                      <a href="#" class="btn btn-secondary-outline btn-slide">
+                        Read more <i class="fa-solid fa-chevron-right"></i>
+                      </a>
+                    </p>
+                  </article>
+                </li>
+                <li class="post-list__item">
+                  <article class="post-article">
+                    <header class="post-article__header">
+                      <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                      <p class="article-date">24 Dec 2022</p>
+                    </header>
+
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Deleniti quas officia rerum tempora exercitationem esse
+                      nesciunt ratione illo non odio?
+                    </p>
+
+                    <p>
+                      <a href="#" class="btn btn-secondary-outline btn-slide">
+                        Read more <i class="fa-solid fa-chevron-right"></i>
+                      </a>
+                    </p>
+                  </article>
+                </li>
+                <li class="post-list__item">
+                  <article class="post-article">
+                    <header class="post-article__header">
+                      <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                      <p class="article-date">24 Dec 2022</p>
+                    </header>
+
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Deleniti quas officia rerum tempora exercitationem esse
+                      nesciunt ratione illo non odio?
+                    </p>
+
+                    <p>
+                      <a href="#" class="btn btn-secondary-outline btn-slide">
+                        Read more <i class="fa-solid fa-chevron-right"></i>
+                      </a>
+                    </p>
+                  </article>
+                </li>
+                <li class="post-list__item">
+                  <article class="post-article">
+                    <header class="post-article__header">
+                      <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                      <p class="article-date">24 Dec 2022</p>
+                    </header>
+
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Deleniti quas officia rerum tempora exercitationem esse
+                      nesciunt ratione illo non odio?
+                    </p>
+
+                    <p>
+                      <a href="#" class="btn btn-secondary-outline btn-slide">
+                        Read more <i class="fa-solid fa-chevron-right"></i>
+                      </a>
+                    </p>
+                  </article>
+                </li>
+                <li class="post-list__item">
+                  <article class="post-article">
+                    <header class="post-article__header">
+                      <h3 class="heading heading-article">Lorem Ipsum Dolor</h3>
+                      <p class="article-date">24 Dec 2022</p>
+                    </header>
+
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Deleniti quas officia rerum tempora exercitationem esse
+                      nesciunt ratione illo non odio?
+                    </p>
+
+                    <p>
+                      <a href="#" class="btn btn-secondary-outline btn-slide">
+                        Read more <i class="fa-solid fa-chevron-right"></i>
+                      </a>
+                    </p>
+                  </article>
+                </li>
+              </ul>
+            </div>
+            <div class="post-cell-pagination">
+              <ul class="pagination-list" role="list">
+                <li class="pagination-list__item">
+                  <a href="#" class="btn btn-pagination" aria-label="first">
+                    <i class="fa-solid fa-chevrons-left"></i>
+                  </a>
+                </li>
+                <li class="pagination-list__item">
+                  <a href="#" class="btn btn-pagination" aria-label="prev">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </a>
+                </li>
+                <li class="pagination-list__item">
+                  <a href="#" class="btn btn-pagination">3</a>
+                </li>
+                <li class="pagination-list__item">
+                  <a href="#" class="btn btn-slide btn-pagination btn-pagination-active">4</a>
+                </li>
+                <li class="pagination-list__item">
+                  <a href="#" class="btn btn-pagination">5</a>
+                </li>
+                <li class="pagination-list__item">
+                  <a href="#" class="btn btn-pagination" aria-label="next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </a>
+                </li>
+                <li class="pagination-list__item">
+                  <a href="#" class="btn btn-pagination" aria-label="last">
+                    <i class="fa-solid fa-chevrons-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    `
+  }
+
+  archiveEl.innerHTML = html
 }

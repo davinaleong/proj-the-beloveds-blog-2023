@@ -8,7 +8,7 @@ const data = await response.json()
 const { page, latest, years } = data
 ---
 
-<MainAstroLayout latest={latest} years={years}>
+<MainAstroLayout pageClass="body-archive" latest={latest} years={years}>
   <HeroAstroComponent
     page={page}
     sectionClassName="section-hero-archive"

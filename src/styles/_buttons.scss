@@ -288,6 +288,19 @@
   --btn-td: underline;
 }
 
+.btn-post-nav-active {
+  --btn-clr: var(--clr-secondary-400);
+  --btn-bg-clr: transparent;
+  --btn-border-clr: transparent;
+
+  --btn-hover-clr: var(--clr-secondary-300);
+  --btn-hover-bg-clr: transparent;
+  --btn-hover-border-clr: transparent;
+
+  --btn-padding: 0;
+  --btn-td: underline;
+}
+
 /// Buttons - Close Modal Button
 .btn-close-modal {
   --btn-clr: var(--clr-secondary-400);
@@ -317,7 +330,7 @@
   --btn-hover-border-clr: transparent;
 
   --btn-fz: var(--fz-pagination);
-  --btn-pagination-size: 2em;
+  --btn-pagination-size: 2.5em;
 
   width: var(--btn-pagination-size);
   height: var(--btn-pagination-size);
