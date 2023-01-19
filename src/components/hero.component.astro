@@ -10,7 +10,7 @@ const subtitleHtml = subtitle ? subtitle.replace(/(?:\r\n|\r|\n)/g, '<br/>') : `
         <h1 class="heading heading-hero">{title}</h1>
 
         { subtitle && <div class="hero-divider m-v-y-300"></div>}
-        { subtitle && <p class="fs-italic">
+        { subtitle && <p>
             <Fragment set:html={subtitleHtml}/>    
         </p> }
 
