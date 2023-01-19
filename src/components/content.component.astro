@@ -1,7 +1,7 @@
 ---
 import { marked } from 'marked'
 
-const { id, sectionClassName, containerClassName, page } = Astro.props
+const { id = "next", sectionClassName, containerClassName, page } = Astro.props
 const { text } = page
 const content = marked.parse(text)
 ---

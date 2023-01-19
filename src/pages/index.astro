@@ -2,14 +2,20 @@
 import MainAstroLayout from "./../layouts/main.layout.astro"
 import HeroAstroComponent from "./../components/hero.component.astro"
 import FeaturedAstroComponent from "./../components/featured.component.astro"
-import LatestAstroComponent from "./../components/latest.component.astro"
+import LoaderAstroComponent from "./../components/loader.component.astro"
 
 const response = await fetch(`${import.meta.env.BLOG_API_URL}home`)
 const data = await response.json()
-const { featured, page, latest, years } = data
+const { page, latest, years } = data
 ---
 <MainAstroLayout pageClass="body-index" latest={latest} years={years}>
 	<HeroAstroComponent page={page} sectionClassName="section-hero-home" containerClassName="container-hero"/>
-	<FeaturedAstroComponent id="next" featured={featured}/>
-	<LatestAstroComponent latest={latest} years={years}/>
+	<FeaturedAstroComponent id="next"/>
+	<div data-element="latest">
+		<LoaderAstroComponent
+		  id="next"
+		  sectionClassName="section-loading"
+		  containerClassName="container-section"
+		/>
+	</div>
 </MainAstroLayout>
