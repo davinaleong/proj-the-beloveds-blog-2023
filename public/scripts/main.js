@@ -32,6 +32,7 @@ const subscribeFormStatusEl = subscribeModalEl.querySelector(
 )
 
 const archiveEl = document.querySelector(`[${dataElementAttr}="archive"]`)
+const postEl = document.querySelector(`[${dataElementAttr}="post"]`)
 
 // Add event listeners
 btnPrimaryMenuEl
@@ -50,6 +51,7 @@ subscribeFormEl.addEventListener(`submit`, (event) =>
 
 resetSubcribeForm()
 renderArchive(archiveEl)
+renderPost(postEl)
 
 // Functions
 function togglePrimaryHeader() {
@@ -170,12 +172,12 @@ async function renderArchive(archiveEl) {
 
     let postsHtml = ``
     if (posts.data && posts.data.length > 0 && posts.data[0]) {
-      posts.data.forEach(post => {
+      posts.data.forEach((post) => {
         const { title, slug, summary, featured, published_at } = post
 
         const featuredClass = featured ? `post-article-featured` : ``
         const postUrl = `post?slug=${slug}`
-        const summaryHtml = summary.replace(/(?:\r\n|\r|\n)/g, '<br>')
+        const summaryHtml = summary.replace(/(?:\r\n|\r|\n)/g, "<br>")
         const publishedAt = dayjs(published_at).format(`DD MMM YYYY`)
 
         postsHtml += `
@@ -245,7 +247,75 @@ async function renderArchive(archiveEl) {
         </div>
       </section>
     `
-  }
 
-  archiveEl.innerHTML = html
+    archiveEl.innerHTML = html
+  }
+}
+
+async function renderPost(postEl) {
+  console.log(`fn: renderPost`)
+
+  let postHtml = ``
+
+  if (postEl) {
+    const urlParams = new URLSearchParams(window.location.search)
+    const selectedSlug = urlParams.get("slug")
+
+    console.log(selectedSlug)
+
+    const response = await fetch(
+      `https://davinas-cms.herokuapp.com/api/blog/posts/${selectedSlug}`
+    )
+    const data = await response.json()
+
+    const { posts } = data
+    if (posts.data && posts.data.length > 0 && posts.data[0]) {
+      const { title, subtitle, text, featured, published_at } = posts.data[0]
+
+      const featuredHtml = featured
+        ? `<h2 class="heading heading-section">[Featured]</h2>`
+        : ``
+      const subtitleHtml = subtitle
+        ? subtitle.replace(/(?:\r\n|\r|\n)/g, "<br>")
+        : ``
+      const publishedAt = dayjs(published_at).format(`DD MMM YYYY`)
+
+      let subContent = ``
+      if (subtitle) {
+        subContent = `
+          <div class="hero-divider m-v-y-300"></div>
+          <p class="fs-italic">${subtitleHtml}</p>
+        `
+      }
+
+      postHtml = `
+        <section class="section-hero section-hero-about-us">
+          <div class="container container-hero">
+            ${featuredHtml}
+            <h1 class="heading heading-hero">${title}</h1>
+            <p class="fs-italic text-primary-300">${publishedAt}</p>
+            ${subContent}
+
+            <a href="#next" class="btn btn-hero">
+              <i class="fa-solid fa-chevron-down hero-chevron-one"></i>
+              <i class="fa-solid fa-chevron-down hero-chevron-two"></i>
+            </a>
+          </div>
+        </section>
+
+        <section id="next" class="section section-content">
+          <article class="container container-section">
+            <header class="visually-hidden">
+              <h2>${title}</h2>
+              <p>${subtitleHtml}</p>
+            </header>
+
+            ${marked.parse(text)}
+          </article>
+        </section>
+      `
+    }
+
+    postEl.innerHTML = postHtml
+  }
 }

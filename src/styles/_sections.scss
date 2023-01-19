@@ -29,6 +29,11 @@
   --section-bg-clr: var(--clr-primary-100);
 }
 
+.section-loading {
+  --section-height: 100vh;
+  --section-bg-clr: var(--clr-primary-100);
+}
+
 /// Sections - Containers
 .container-section {
   padding-block: var(--size-v-400);
@@ -108,6 +113,16 @@
   100% {
     translate: 0 0;
   }
+}
+
+/// Sections - Content
+.section-content :where(p) {
+  margin-bottom: var(--size-v-500);
+}
+
+.section-content :where(ul, ol) {
+  padding-left: var(--size-v-400);
+  margin-bottom: var(--size-v-500);
 }
 
 /// Sections - Featured - Media

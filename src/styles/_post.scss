@@ -94,10 +94,15 @@
 }
 
 /// Post - Blockquote
-.blockquote {
+blockquote, .blockquote {
   background-color: var(--clr-primary-50);
   border-left: 2px solid var(--clr-secondary-400);
-  padding: var(--size-v-400);
+  padding: var(--size-v-500);
+  margin-bottom: var(--size-v-500);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (min-width: breakpoint("tablet")) {
