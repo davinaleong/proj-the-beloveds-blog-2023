@@ -29,7 +29,7 @@ const { latest, years, pageClass } = Astro.props
 		<script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"></script>
 		<script is:inline defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.2.12/marked.min.js"></script>
 		
-		<script is:inline defer src="./scripts/main.js"></script>
+		<script is:inline defer src="/scripts/main.js"></script>
 	</head>
 	<body id="top" class={"body " + pageClass}>
 		<HeaderAstroComponent title={title} latest={latest} years={years} />

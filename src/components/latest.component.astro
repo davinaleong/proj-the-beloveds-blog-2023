@@ -1,8 +1,14 @@
 ---
+import dayjs from "dayjs"
+
 import ArticleAstroComponent from "./article.component.astro"
 import LinkAstroComponent from "./link.component.astro"
 
-const { latest } = Astro.props
+const { latest, years } = Astro.props
+let year = dayjs().format("YYYY")
+if (years && years.length > 0 && years[0]) {
+    year = years[0].year
+}
 ---
 <section class="section section-post">
     <div class="container container-no-padding">
@@ -19,8 +25,8 @@ const { latest } = Astro.props
           </ul>
         </div>
         <div class="post-cell-button">
-            <LinkAstroComponent href="/archive" className="btn-secondary-outline btn-slide">
-                See more posts <i class="fa-solid fa-chevron-right"></i>
+            <LinkAstroComponent href={"/archive?year=" + year + "&page=1"} className="btn-secondary-outline btn-slide">
+              See more posts <i class="fa-solid fa-chevron-right"></i>
             </LinkAstroComponent>
         </div>
       </div>
