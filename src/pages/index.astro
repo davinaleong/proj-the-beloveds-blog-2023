@@ -11,5 +11,5 @@ const { featured, page, latest, years } = data
 <MainAstroLayout pageClass="body-index" latest={latest} years={years}>
 	<HeroAstroComponent page={page} sectionClassName="section-hero-home" containerClassName="container-hero"/>
 	<FeaturedAstroComponent id="next" featured={featured}/>
-	<LatestAstroComponent latest={latest} />
+	<LatestAstroComponent latest={latest} years={years}/>
 </MainAstroLayout>
