@@ -1,6 +1,7 @@
 ---
 import MainAstroLayout from "./../layouts/main.layout.astro"
 import HeroAstroComponent from "./../components/hero.component.astro"
+import LoaderAstroComponent from "./../components/loader.component.astro"
 
 const response = await fetch(`${import.meta.env.BLOG_API_URL}archive`)
 const data = await response.json()
@@ -8,5 +9,16 @@ const { page, latest, years } = data
 ---
 
 <MainAstroLayout latest={latest} years={years}>
-    <HeroAstroComponent page={page} sectionClassName="section-hero-archive" containerClassName="container-hero"/>
+  <HeroAstroComponent
+    page={page}
+    sectionClassName="section-hero-archive"
+    containerClassName="container-hero"
+  />
+  <div data-element="archive">
+    <LoaderAstroComponent
+      id="next"
+      sectionClassName="section-content"
+      containerClassName="container-section"
+    />
+  </div>
 </MainAstroLayout>

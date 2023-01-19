@@ -1,0 +1,8 @@
+---
+const { id, sectionClassName, containerClassName } = Astro.props
+---
+<section id={id} class={"section " + sectionClassName}>
+    <div class={"container " + containerClassName}>
+        <p class="heading heading-loader">Loading content <i class="fa-solid fa-circle-notch fa-spin"></i></p>
+    </div>
+</section>

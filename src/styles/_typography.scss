@@ -129,6 +129,11 @@ small,
   --heading-fz: var(--fz-article-heading);
 }
 
+.heading-loader {
+  --heading-ff: var(--ff-primary);
+  --heading-fz: var(--fz-loader-heading);
+}
+
 .heading-modal {
   --heading-clr: var(--clr-secondary-400);
   --heading-fz: var(--fz-modal-heading);
