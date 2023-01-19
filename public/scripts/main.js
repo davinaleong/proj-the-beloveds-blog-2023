@@ -5,6 +5,7 @@ console.log(`main.js loaded`)
 const apiUrl = `https://davinas-cms.herokuapp.com/api/`
 const dataElementAttr = `data-element`
 const ariaExpandedAttr = `aria-expanded`
+const hrefAttr = `href`
 const disabledAttr = `disabled`
 const formEl = `form`
 const svgEl = `svg`
@@ -14,6 +15,9 @@ const iEl = `i`
 const bodyEl = document.body
 const primaryHeaderEl = document.querySelector(
   `[${dataElementAttr}="primary-header"]`
+)
+const latestPostLinkEl = document.querySelector(
+  `[${dataElementAttr}="latest-post-link"]`
 )
 const btnPrimaryMenuEl = document.querySelector(
   `[${dataElementAttr}="btn-primary-menu"]`
@@ -33,6 +37,8 @@ const subscribeFormStatusEl = subscribeModalEl.querySelector(
   `[${dataElementAttr}="subscribe-form-status"]`
 )
 
+const featuredContentEl = document.querySelector(`[${dataElementAttr}="featured-content"]`)
+const latestEl = document.querySelector(`[${dataElementAttr}="latest"]`)
 const archiveEl = document.querySelector(`[${dataElementAttr}="archive"]`)
 const postEl = document.querySelector(`[${dataElementAttr}="post"]`)
 
@@ -51,9 +57,11 @@ subscribeFormEl.addEventListener(`submit`, (event) =>
   subscribeFormHandler(event)
 )
 
+updateLatestPostLink()
 resetSubcribeForm()
-renderArchive(archiveEl)
-renderPost(postEl)
+renderIndex()
+renderArchive()
+renderPost()
 
 // Functions
 function togglePrimaryHeader() {
@@ -162,7 +170,108 @@ async function postFormDataAsJson({ url, formData }) {
   return response.json()
 }
 
-async function renderArchive(archiveEl) {
+async function getPageJsonData(url) {
+  const response = await fetch(url)
+  return response.json()
+}
+
+async function renderIndex() {
+  console.log(`fn: renderIndex`)
+
+  const data = await getPageJsonData(`${apiUrl}blog/home`)
+  const { featured, latest, years } = data
+
+  let featuredContentHtml = ``
+
+  if (featuredContentEl) {
+    if (featured) {
+      const { title, slug, summary } = featured
+      featuredContentHtml = `
+        <h2 class="heading heading-section">[Featured Post]</h2>
+        <h3 class="heading heading-sub m-f-b-400">${title}</h3>
+        <p class="m-f-b-400">${summary}</p>
+        <p>
+          <a href="/post?slug=${slug}" class="btn btn-secondary btn-slide">
+            Read more <i class="fa-solid fa-chevron-right"></i>
+          </a>
+        </p>
+      `
+    }
+
+    featuredContentEl.innerHTML = featuredContentHtml
+  }
+
+  let latestHtml = ``
+  if (latestEl) {
+
+    let postsHtml = ``
+    if (latest && latest.length > 0) {
+      latest.forEach(post => {
+        const { title, slug, summary, published_at } = post
+        const publishedAt = dayjs(published_at).format(`DD MMM YYYY`)
+
+        postsHtml += `
+        <li class="post-list__item">
+          <article class="post-article">
+            <header class="post-article__header">
+              <h3 class="heading heading-article">${title}</h3>
+              <p class="article-date">${publishedAt}</p>
+            </header>
+
+            <p>${summary}</p>
+
+            <p>
+              <a href="/post?slug=${slug}" class="btn btn-secondary-outline btn-slide">
+                Read more <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </p>
+          </article>
+        </li>
+        `
+      })
+
+      let selectedYear = dayjs().format("YYYY")
+      if (years && years.length > 0 && years[0]) {
+        selectedYear = years[0].year
+      }
+
+      latestHtml = `
+        <section class="section section-post">
+          <div class="container container-no-padding">
+            <div class="post-grid">
+              <div class="post-cell-content">
+                <h2 class="heading heading-section m-f-b-500">[Latests Posts]</h2>
+
+                <ul class="post-list" role="list">
+                  ${postsHtml}
+                </ul>
+              </div>
+              <div class="post-cell-button">
+                <a href="/archive?year=${selectedYear}&page=1" class="btn btn-secondary-outline btn-slide">
+                  See more posts <i class="fa-solid fa-chevron-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      `
+    }
+
+    latestEl.innerHTML = latestHtml
+  }
+}
+
+async function updateLatestPostLink() {
+  console.log(`fn: updateLatestPostLink`)
+
+  const data = await getPageJsonData(`${apiUrl}blog/home`)
+  const { latest } = data
+  if (latest && latest.slug) {
+    latestPostLinkEl.getAttribute(hrefAttr, `post?slug=${latest.slug}`)
+  }
+}
+
+async function renderArchive() {
   console.log(`fn: renderArchive`)
 
   let html = ``
@@ -171,10 +280,7 @@ async function renderArchive(archiveEl) {
     const selectedYear = urlParams.get("year")
     const selectedPage = urlParams.get("page")
 
-    const response = await fetch(
-      `${apiUrl}blog/archive/${selectedYear}?page=${selectedPage}`
-    )
-    const data = await response.json()
+    const data = await getPageJsonData(`${apiUrl}blog/archive/${selectedYear}?page=${selectedPage}`)
     const { years, posts } = data
 
     let yearsHtml = ``
@@ -236,7 +342,6 @@ async function renderArchive(archiveEl) {
 
         const featuredClass = featured ? `post-article-featured` : ``
         const postUrl = `post?slug=${slug}`
-        const summaryHtml = summary.replace(/(?:\r\n|\r|\n)/g, "<br>")
         const publishedAt = dayjs(published_at).format(`DD MMM YYYY`)
 
         postsHtml += `
@@ -247,7 +352,7 @@ async function renderArchive(archiveEl) {
               <p class="article-date">${publishedAt}</p>
             </header>
 
-            <p>${summaryHtml}</p>
+            <p>${summary}</p>
 
             <p>
               <a href="${postUrl}" class="btn btn-secondary-outline btn-slide">
@@ -311,7 +416,7 @@ async function renderArchive(archiveEl) {
   }
 }
 
-async function renderPost(postEl) {
+async function renderPost() {
   console.log(`fn: renderPost`)
 
   let postHtml = ``
@@ -320,14 +425,9 @@ async function renderPost(postEl) {
     const urlParams = new URLSearchParams(window.location.search)
     const selectedSlug = urlParams.get("slug")
 
-    console.log(selectedSlug)
-
-    const response = await fetch(
-      `${apiUrl}blog/posts/${selectedSlug}`
-    )
-    const data = await response.json()
-
+    const data = await getPageJsonData(`${apiUrl}blog/posts/${selectedSlug}`)
     const { posts } = data
+
     if (posts.data && posts.data.length > 0 && posts.data[0]) {
       const { title, subtitle, text, featured, published_at } = posts.data[0]
 
@@ -348,7 +448,7 @@ async function renderPost(postEl) {
       }
 
       postHtml = `
-        <section class="section-hero section-hero-about-us">
+        <section class="section-hero section-hero-post">
           <div class="container container-hero">
             ${featuredHtml}
             <h1 class="heading heading-hero">${title}</h1>

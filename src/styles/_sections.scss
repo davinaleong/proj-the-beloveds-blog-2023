@@ -122,35 +122,35 @@
   .h1 {
     font-size: var(--fz-h1);
     font-weight: var(--fw-regular);
-    margin-bottom: var(--size-v-300);
+    margin-bottom: var(--size-v-400);
   }
 
   h2,
   .h2 {
     font-size: var(--fz-h2);
     font-weight: var(--fw-regular);
-    margin-bottom: var(--size-v-300);
+    margin-bottom: var(--size-v-400);
   }
 
   h3,
   .h3 {
     font-size: var(--fz-h3);
     font-weight: var(--fw-regular);
-    margin-bottom: var(--size-v-300);
+    margin-bottom: var(--size-v-400);
   }
 
   h4,
   .h4 {
     font-size: var(--fz-h4);
     font-weight: var(--fw-regular);
-    margin-bottom: var(--size-v-300);
+    margin-bottom: var(--size-v-400);
   }
 
   h5,
   .h5 {
     font-size: var(--fz-h5);
     font-weight: var(--fw-bold);
-    margin-bottom: var(--size-v-300);
+    margin-bottom: var(--size-v-400);
   }
 
   h6,
@@ -158,26 +158,26 @@
     font-size: var(--fz-h6);
     font-weight: var(--fw-regular);
     font-style: italic;
-    margin-bottom: var(--size-v-300);
+    margin-bottom: var(--size-v-400);
   }
 
   p,
   .p {
-    margin-bottom: var(--size-v-300);
+    margin-bottom: var(--size-v-400);
   }
 
   ul, ol, .ul, .ol {
     padding-left: var(--size-v-400);
-    margin-bottom: var(--size-v-300);
+    margin-bottom: var(--size-v-400);
   }
 
   blockquote, .blockquote {
-    margin-bottom: var(--size-v-300);
+    margin-bottom: var(--size-v-400);
   }
 }
 
 /// Sections - Featured - Media
-@media screen and (min-width: breakpoint("tablet")) {
+@media screen and (min-width: breakpoint("desktop")) {
   .container-featured {
     display: grid;
     grid-template-columns: 1fr 2fr;

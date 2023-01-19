@@ -3,10 +3,9 @@ import featuredImgBible from "./../styles/images/featured-image-bible.jpg"
 import featuredImgFlowers from "./../styles/images/featured-image-flowers.jpg"
 import featuredImgCross from "./../styles/images/featured-image-cross.jpg"
 
-import LinkAstroComponent from "./../components/link.component.astro"
+import LoaderAstroComponent from "./../components/loader.component.astro"
 
-const { id, featured } = Astro.props
-const { title, summary } = featured
+const { id = "next" } = Astro.props
 ---
 <section id={id} class="section section-featured">
     <div class="container container-section container-featured">
@@ -27,15 +26,11 @@ const { title, summary } = featured
                 class="featured-image-three"
             />
         </div>
-        <article class="featured-content">
-            <h2 class="heading heading-section">[Featured Post]</h2>
-            <h3 class="heading heading-sub m-f-b-400" style="--heading-clr: var(--clr-primary-800);">{title}</h3>
-            <p class="m-f-b-400">{summary}</p>
-            <p>
-                <LinkAstroComponent href="#" className="btn-secondary btn-slide">
-                    Read more <i class="fa-solid fa-chevron-right"></i>
-                </LinkAstroComponent>
-            </p>
+        <article class="featured-content" data-element="featured-content">
+            <LoaderAstroComponent
+                sectionClassName="section-loading"
+                containerClassName="container-section"
+            />
         </article>
     </div>
 </section>
