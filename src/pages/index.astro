@@ -6,9 +6,9 @@ import LatestAstroComponent from "./../components/latest.component.astro"
 
 const response = await fetch(`${import.meta.env.BLOG_API_URL}home`)
 const data = await response.json()
-const { featured, page, latest } = data
+const { featured, page, latest, years } = data
 ---
-<MainAstroLayout lastest={latest}>
+<MainAstroLayout latest={latest} years={years}>
 	<HeroAstroComponent page={page} sectionClassName="section-hero-home" containerClassName="container-hero"/>
 	<FeaturedAstroComponent id="next" featured={featured}/>
 	<LatestAstroComponent latest={latest} />

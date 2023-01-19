@@ -1,11 +1,18 @@
 ---
+import dayjs from "dayjs"
+
 import LinkAstroComponent from "./../components/link.component.astro"
 import ButtonAstroComponent from "./../components/button.component.astro"
 
-const { title, latest } = Astro.props
+const { title, latest, years } = Astro.props
 let slug = ``
-if (latest) {
-    slug = latest.slug
+if (latest && latest.length > 0 && latest[0]) {
+    slug = latest[0].slug
+}
+
+let year = dayjs().format("YYYY")
+if (years && years.length > 0 && years[0]) {
+    year = years[0].year
 }
 ---
 <header class="primary-header" data-element="primary-header">
@@ -32,12 +39,12 @@ if (latest) {
                     </LinkAstroComponent>
                 </li>
                 <li class="primary-nav__list__item">
-                    <LinkAstroComponent href="/post?slug={slug}" className="btn-primary-nav">
+                    <LinkAstroComponent href={"/post?slug=" + slug} className="btn-primary-nav">
                         Latest Post
                     </LinkAstroComponent>
                 </li>
                 <li class="primary-nav__list__item">
-                    <LinkAstroComponent href="/archive" className="btn-primary-nav">
+                    <LinkAstroComponent href={"/archive?year=" + year + "&page=1"} className="btn-primary-nav">
                         Archive
                     </LinkAstroComponent>
                 </li>
