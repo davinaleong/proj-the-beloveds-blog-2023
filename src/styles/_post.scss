@@ -57,21 +57,17 @@
 /// Post - Post Article Header
 .post-article__header {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: auto;
+  grid-template-rows: repeat(2, max-content);
   align-items: center;
   gap: var(--size-v-200);
-}
-
-/// Post - Post Article Heading
-.post-article__header > .heading-article {
-  grid-column: 1 / 4;
 }
 
 /// Post - Article Date
 .article-date {
   color: var(--clr-gray-800);
   font-size: var(--fz-post-date);
-  font-style: italic;
+  text-align: center;
 }
 
 /// Post - Pagination Cell
@@ -105,6 +101,7 @@ blockquote, .blockquote {
   }
 }
 
+/// Post - Media Queries
 @media screen and (min-width: breakpoint("tablet")) {
   .post-grid-archive {
     grid-template-columns: 0.2fr 0.8fr;
@@ -141,7 +138,20 @@ blockquote, .blockquote {
   }
 
   .post-article__header {
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    align-items: center;
+    gap: var(--size-v-200);
+  
+    & > .heading-article {
+      grid-column: 1 / 4;
+    }
+  }
+
+  .article-date {
+    text-align: right;
   }
 }
+
+
