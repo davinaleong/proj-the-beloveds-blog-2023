@@ -13,8 +13,9 @@
   left: 50%;
   top: 50%;
   translate: -50% -50%;
-  padding: var(--size-v-500);
+  padding: clamp(var(--size-v-300), 1vw + 1em , var(--size-v-500));
   border: none;
+  width: min(100% - var(--size-v-500), breakpoint("phone-l"));
 }
 
 /// Modal - Modal Dialog
@@ -27,14 +28,17 @@
 .modal-form {
   .input-group {
     display: grid;
-    grid-template-columns: auto 6em;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, 1fr);
   }
 
   .form-input {
+    width: 100%;
     padding: var(--size-v-200);
     color: var(--clr-primary-800);
     border: thin solid var(--clr-secondary-400);
     background-color: var(--clr-primary-50);
+    text-align: center;
 
     &[disabled] {
       color: var(--clr-gray-700);
@@ -42,6 +46,12 @@
       background-color: var(--clr-gray-50);
       opacity: 0.7;
       cursor: not-allowed;
+    }
+  }
+
+  &:has(.form-status__error, .form-status__success) {
+    .form-group {
+      margin-bottom: var(--size-v-400);
     }
   }
 }
@@ -56,3 +66,19 @@
   color: var(--clr-success-500);
   font-size: var(--fz-form-status);
 }
+
+/// Modal - Media Queries
+@media screen and (min-width: breakpoint("tablet")) {
+  .modal-form {
+    .input-group {
+      display: grid;
+      grid-template-columns: auto 6em;
+      grid-template-rows: auto;
+    }
+
+    .form-input {
+      text-align: left;
+    }
+  }
+}
+

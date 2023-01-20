@@ -89,6 +89,7 @@ small,
 .heading-modal {
   --heading-clr: var(--clr-secondary-400);
   --heading-fz: var(--fz-modal-heading);
+  margin-bottom: var(--size-v-400);
 }
 
 .section-content .heading {
