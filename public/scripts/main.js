@@ -37,7 +37,9 @@ const subscribeFormStatusEl = subscribeModalEl.querySelector(
   `[${dataElementAttr}="subscribe-form-status"]`
 )
 
-const featuredContentEl = document.querySelector(`[${dataElementAttr}="featured-content"]`)
+const featuredContentEl = document.querySelector(
+  `[${dataElementAttr}="featured-content"]`
+)
 const latestEl = document.querySelector(`[${dataElementAttr}="latest"]`)
 const archiveEl = document.querySelector(`[${dataElementAttr}="archive"]`)
 const postEl = document.querySelector(`[${dataElementAttr}="post"]`)
@@ -181,6 +183,7 @@ async function renderIndex() {
   const data = await getPageJsonData(`${apiUrl}blog/home`)
   const { featured, latest, years } = data
 
+  let selectedYear = dayjs().format("YYYY")
   let featuredContentHtml = ``
 
   if (featuredContentEl) {
@@ -203,10 +206,10 @@ async function renderIndex() {
 
   let latestHtml = ``
   if (latestEl) {
-
+    let postListHtml = `<p class="fz-small ta-center">No posts found.</p>`
     let postsHtml = ``
     if (latest && latest.length > 0) {
-      latest.forEach(post => {
+      latest.forEach((post) => {
         const { title, slug, summary, published_at } = post
         const publishedAt = dayjs(published_at).format(`DD MMM YYYY`)
 
@@ -230,32 +233,35 @@ async function renderIndex() {
         `
       })
 
-      let selectedYear = dayjs().format("YYYY")
       if (years && years.length > 0 && years[0]) {
         selectedYear = years[0].year
       }
 
-      latestHtml = `
-        <section class="section section-post">
-          <div class="container container-no-padding">
-            <div class="post-grid">
-              <div class="post-cell-content">
-                <h2 class="heading heading-section m-f-b-500">[Latests Posts]</h2>
-
-                <ul class="post-list" role="list">
-                  ${postsHtml}
-                </ul>
-              </div>
-              <div class="post-cell-button">
-                <a href="/archive?year=${selectedYear}&page=1" class="btn btn-secondary-outline btn-slide">
-                  See more posts <i class="fa-solid fa-chevron-right"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+      postListHtml = `
+        <ul class="post-list" role="list">
+          ${postsHtml}
+        </ul>
       `
     }
+
+    latestHtml = `
+      <section class="section section-post">
+        <div class="container container-no-padding">
+          <div class="post-grid">
+            <div class="post-cell-content">
+              <h2 class="heading heading-section m-f-b-500">[Latests Posts]</h2>
+
+              ${postListHtml}
+            </div>
+            <div class="post-cell-button">
+              <a href="/archive?year=${selectedYear}&page=1" class="btn btn-secondary-outline btn-slide">
+                See more posts <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    `
 
     latestEl.innerHTML = latestHtml
   }
@@ -280,7 +286,9 @@ async function renderArchive() {
     const selectedYear = urlParams.get("year")
     const selectedPage = urlParams.get("page")
 
-    const data = await getPageJsonData(`${apiUrl}blog/archive/${selectedYear}?page=${selectedPage}`)
+    const data = await getPageJsonData(
+      `${apiUrl}blog/archive/${selectedYear}?page=${selectedPage}`
+    )
     const { years, posts } = data
 
     let yearsHtml = ``
@@ -335,6 +343,9 @@ async function renderArchive() {
       `
     })
 
+    let postListHtml = `
+      <p class="fz-small ta-center">No posts found.</p>
+    `
     let postsHtml = ``
     if (posts.data && posts.data.length > 0 && posts.data[0]) {
       posts.data.forEach((post) => {
@@ -363,6 +374,12 @@ async function renderArchive() {
         </li>
         `
       })
+
+      postListHtml = `
+        <ul class="post-list" role="list">
+          ${postsHtml}
+        </ul>
+      `
     }
 
     html = `
@@ -378,9 +395,7 @@ async function renderArchive() {
             <div class="post-cell-content">
               <h2 class="heading heading-section m-f-b-500">[${selectedYear}]</h2>
 
-              <ul class="post-list" role="list">
-                ${postsHtml}
-              </ul>
+              ${postListHtml}
             </div>
             <div class="post-cell-pagination">
               <ul class="pagination-list" role="list">
@@ -427,6 +442,15 @@ async function renderPost() {
 
     const data = await getPageJsonData(`${apiUrl}blog/posts/${selectedSlug}`)
     const { posts } = data
+
+    postHtml = `
+        <section class="section-hero section-hero-post">
+          <div class="container container-hero">
+            <h2 class="heading heading-section">[404]</h2>
+            <h1 class="heading heading-hero">Post Not Found <i class="fa-duotone fa-face-sad-tear"></i></h1>
+          </div>
+        </section>
+      `
 
     if (posts.data && posts.data.length > 0 && posts.data[0]) {
       const { title, subtitle, text, featured, published_at } = posts.data[0]
