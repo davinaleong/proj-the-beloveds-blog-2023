@@ -37,7 +37,9 @@ const subscribeFormStatusEl = subscribeModalEl.querySelector(
   `[${dataElementAttr}="subscribe-form-status"]`
 )
 
-const featuredContentEl = document.querySelector(`[${dataElementAttr}="featured-content"]`)
+const featuredContentEl = document.querySelector(
+  `[${dataElementAttr}="featured-content"]`
+)
 const latestEl = document.querySelector(`[${dataElementAttr}="latest"]`)
 const archiveEl = document.querySelector(`[${dataElementAttr}="archive"]`)
 const postEl = document.querySelector(`[${dataElementAttr}="post"]`)
@@ -181,6 +183,7 @@ async function renderIndex() {
   const data = await getPageJsonData(`${apiUrl}blog/home`)
   const { featured, latest, years } = data
 
+  let selectedYear = dayjs().format("YYYY")
   let featuredContentHtml = ``
 
   if (featuredContentEl) {
@@ -203,11 +206,10 @@ async function renderIndex() {
 
   let latestHtml = ``
   if (latestEl) {
-
     let postListHtml = `<p class="fz-small ta-center">No posts found.</p>`
     let postsHtml = ``
     if (latest && latest.length > 0) {
-      latest.forEach(post => {
+      latest.forEach((post) => {
         const { title, slug, summary, published_at } = post
         const publishedAt = dayjs(published_at).format(`DD MMM YYYY`)
 
@@ -231,7 +233,6 @@ async function renderIndex() {
         `
       })
 
-      let selectedYear = dayjs().format("YYYY")
       if (years && years.length > 0 && years[0]) {
         selectedYear = years[0].year
       }
@@ -241,26 +242,26 @@ async function renderIndex() {
           ${postsHtml}
         </ul>
       `
+    }
 
-      latestHtml = `
-        <section class="section section-post">
-          <div class="container container-no-padding">
-            <div class="post-grid">
-              <div class="post-cell-content">
-                <h2 class="heading heading-section m-f-b-500">[Latests Posts]</h2>
+    latestHtml = `
+      <section class="section section-post">
+        <div class="container container-no-padding">
+          <div class="post-grid">
+            <div class="post-cell-content">
+              <h2 class="heading heading-section m-f-b-500">[Latests Posts]</h2>
 
-                ${postListHtml}
-              </div>
-              <div class="post-cell-button">
-                <a href="/archive?year=${selectedYear}&page=1" class="btn btn-secondary-outline btn-slide">
-                  See more posts <i class="fa-solid fa-chevron-right"></i>
-                </a>
-              </div>
+              ${postListHtml}
+            </div>
+            <div class="post-cell-button">
+              <a href="/archive?year=${selectedYear}&page=1" class="btn btn-secondary-outline btn-slide">
+                See more posts <i class="fa-solid fa-chevron-right"></i>
+              </a>
             </div>
           </div>
-        </section>
-      `
-    }
+        </div>
+      </section>
+    `
 
     latestEl.innerHTML = latestHtml
   }
@@ -285,7 +286,9 @@ async function renderArchive() {
     const selectedYear = urlParams.get("year")
     const selectedPage = urlParams.get("page")
 
-    const data = await getPageJsonData(`${apiUrl}blog/archive/${selectedYear}?page=${selectedPage}`)
+    const data = await getPageJsonData(
+      `${apiUrl}blog/archive/${selectedYear}?page=${selectedPage}`
+    )
     const { years, posts } = data
 
     let yearsHtml = ``
