@@ -204,6 +204,7 @@ async function renderIndex() {
   let latestHtml = ``
   if (latestEl) {
 
+    let postListHtml = `<p class="fz-small ta-center">No posts found.</p>`
     let postsHtml = ``
     if (latest && latest.length > 0) {
       latest.forEach(post => {
@@ -235,6 +236,12 @@ async function renderIndex() {
         selectedYear = years[0].year
       }
 
+      postListHtml = `
+        <ul class="post-list" role="list">
+          ${postsHtml}
+        </ul>
+      `
+
       latestHtml = `
         <section class="section section-post">
           <div class="container container-no-padding">
@@ -242,9 +249,7 @@ async function renderIndex() {
               <div class="post-cell-content">
                 <h2 class="heading heading-section m-f-b-500">[Latests Posts]</h2>
 
-                <ul class="post-list" role="list">
-                  ${postsHtml}
-                </ul>
+                ${postListHtml}
               </div>
               <div class="post-cell-button">
                 <a href="/archive?year=${selectedYear}&page=1" class="btn btn-secondary-outline btn-slide">
@@ -336,7 +341,7 @@ async function renderArchive() {
     })
 
     let postListHtml = `
-      <p class="ta-center">No posts found.</p>
+      <p class="fz-small ta-center">No posts found.</p>
     `
     let postsHtml = ``
     if (posts.data && posts.data.length > 0 && posts.data[0]) {
