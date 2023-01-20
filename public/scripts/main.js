@@ -428,6 +428,15 @@ async function renderPost() {
     const data = await getPageJsonData(`${apiUrl}blog/posts/${selectedSlug}`)
     const { posts } = data
 
+    postHtml = `
+        <section class="section-hero section-hero-post">
+          <div class="container container-hero">
+            <h2 class="heading heading-section">[404]</h2>
+            <h1 class="heading heading-hero">Post Not Found <i class="fa-duotone fa-face-sad-tear"></i></h1>
+          </div>
+        </section>
+      `
+
     if (posts.data && posts.data.length > 0 && posts.data[0]) {
       const { title, subtitle, text, featured, published_at } = posts.data[0]
 
