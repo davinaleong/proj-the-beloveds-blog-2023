@@ -255,7 +255,7 @@ async function renderIndex() {
             </div>
             <div class="post-cell-button">
               <a href="/archive?year=${selectedYear}&page=1" class="btn btn-secondary-outline btn-slide">
-                See more posts <i class="fa-solid fa-chevron-right"></i>
+                See more articles <i class="fa-solid fa-chevron-right"></i>
               </a>
             </div>
           </div>
