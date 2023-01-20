@@ -190,7 +190,7 @@ async function renderIndex() {
     if (featured) {
       const { title, slug, summary } = featured
       featuredContentHtml = `
-        <h2 class="heading heading-section">[Featured Post]</h2>
+        <h2 class="heading heading-section">[Featured Article]</h2>
         <h3 class="heading heading-sub m-f-b-400">${title}</h3>
         <p class="m-f-b-400">${summary}</p>
         <p>
@@ -206,7 +206,7 @@ async function renderIndex() {
 
   let latestHtml = ``
   if (latestEl) {
-    let postListHtml = `<p class="fz-small ta-center">No posts found.</p>`
+    let postListHtml = `<p class="fz-small ta-center">No articles found.</p>`
     let postsHtml = ``
     if (latest && latest.length > 0) {
       latest.forEach((post) => {
@@ -249,7 +249,7 @@ async function renderIndex() {
         <div class="container container-no-padding">
           <div class="post-grid">
             <div class="post-cell-content">
-              <h2 class="heading heading-section m-f-b-500">[Latests Posts]</h2>
+              <h2 class="heading heading-section m-f-b-500">[Latests Articles]</h2>
 
               ${postListHtml}
             </div>
@@ -344,7 +344,7 @@ async function renderArchive() {
     })
 
     let postListHtml = `
-      <p class="fz-small ta-center">No posts found.</p>
+      <p class="fz-small ta-center">No articles found.</p>
     `
     let postsHtml = ``
     if (posts.data && posts.data.length > 0 && posts.data[0]) {
@@ -447,7 +447,7 @@ async function renderPost() {
         <section class="section-hero section-hero-post">
           <div class="container container-hero">
             <h2 class="heading heading-section">[404]</h2>
-            <h1 class="heading heading-hero">Post Not Found <i class="fa-duotone fa-face-sad-tear"></i></h1>
+            <h1 class="heading heading-hero">Article Not Found <i class="fa-duotone fa-face-sad-tear"></i></h1>
           </div>
         </section>
       `
