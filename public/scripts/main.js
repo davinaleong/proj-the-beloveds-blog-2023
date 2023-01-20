@@ -335,6 +335,9 @@ async function renderArchive() {
       `
     })
 
+    let postListHtml = `
+      <p class="ta-center">No posts found.</p>
+    `
     let postsHtml = ``
     if (posts.data && posts.data.length > 0 && posts.data[0]) {
       posts.data.forEach((post) => {
@@ -363,6 +366,12 @@ async function renderArchive() {
         </li>
         `
       })
+
+      postListHtml = `
+        <ul class="post-list" role="list">
+          ${postsHtml}
+        </ul>
+      `
     }
 
     html = `
@@ -378,9 +387,7 @@ async function renderArchive() {
             <div class="post-cell-content">
               <h2 class="heading heading-section m-f-b-500">[${selectedYear}]</h2>
 
-              <ul class="post-list" role="list">
-                ${postsHtml}
-              </ul>
+              ${postListHtml}
             </div>
             <div class="post-cell-pagination">
               <ul class="pagination-list" role="list">
