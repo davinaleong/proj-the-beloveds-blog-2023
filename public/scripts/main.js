@@ -272,8 +272,9 @@ async function updateLatestPostLink() {
 
   const data = await getPageJsonData(`${apiUrl}blog/home`)
   const { latest } = data
-  if (latest && latest.slug) {
-    latestPostLinkEl.getAttribute(hrefAttr, `post?slug=${latest.slug}`)
+  console.log(latest)
+  if (latest && latest.length && latest[0]) {
+    latestPostLinkEl.setAttribute(hrefAttr, `post?${latest[0].slug}`)
   }
 }
 
