@@ -274,7 +274,7 @@ async function updateLatestPostLink() {
   const { latest } = data
   console.log(latest)
   if (latest && latest.length && latest[0]) {
-    latestPostLinkEl.setAttribute(hrefAttr, `post?${latest[0].slug}`)
+    latestPostLinkEl.setAttribute(hrefAttr, `/post?slug=${latest[0].slug}`)
   }
 }
 
