@@ -8,8 +8,8 @@
 
 /// Footer - Primary Footer Container
 .primary-footer-container {
-  --primary-footer-container-padding-top: var(--size-v-200);
-  --primary-footer-container-padding-bottom: var(--size-v-500);
+  --primary-footer-container-padding-top: var(--size-v-400);
+  --primary-footer-container-padding-bottom: var(--size-v-600);
 
   padding-block: var(--primary-footer-container-padding-top)
     var(--primary-footer-container-padding-bottom);

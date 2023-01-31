@@ -1,1 +1,17 @@
-<h1>Privacy Policy</h1>
+---
+import MainAstroLayout from "./../layouts/main.layout.astro"
+import HeroAstroComponent from "./../components/hero.component.astro"
+
+const response = await fetch(`${import.meta.env.BLOG_API_URL}privacy`)
+const data = await response.json()
+const { page, latest, years } = data
+---
+
+<MainAstroLayout pageClass="body-privacy" latest={latest} years={years}>
+    <HeroAstroComponent page={page} sectionClassName="section-hero-privacy" containerClassName="container-hero"/>
+    <section id="next" class="section section-content">
+        <div class="container container p-v-y-400">
+            <a class="wpembed-inline" href="https://app.websitepolicies.com/policies/view/qy2jteug">Privacy policy</a><script src="https://cdn.websitepolicies.io/lib/embed/embed.min.js" defer></script>
+        </div>
+    </section>
+</MainAstroLayout>
