@@ -6,28 +6,39 @@
     grid-template-rows: repeat(5, min-content);
     gap: var(--size-v-400);
     text-align: left;
-    color: var(--clr-primary-800);
 
-    .form-label {
-        display: block;
-        margin-bottom: var(--size-v-200);
-    }
+    .form-group {
+        color: var(--clr-primary-800);
 
-    .form-label-required::after {
-        content: "*";
-        color: var(--clr-secondary-400);
-    }
+        .form-label {
+            display: block;
+            margin-bottom: var(--size-v-200);
+        }
+    
+        .form-label-required::after {
+            content: "*";
+            color: var(--clr-secondary-400);
+        }
+    
+        .form-field {
+            min-height: 3.2em;
+            width: 100%;
+            padding: var(--size-v-300);
+            background-color: var(--clr-primary-100);
+            border: thin solid var(--clr-primary-100);
+            transition: border 0.3s ease-in-out;
+    
+            &:hover {
+                border: thin solid var(--clr-primary-800);
+            }
+        }
 
-    .form-field {
-        min-height: 3.2em;
-        width: 100%;
-        padding: var(--size-v-300);
-        background-color: var(--clr-primary-100);
-        border: thin solid var(--clr-primary-100);
-        transition: border 0.3s ease-in-out;
+        &[data-error="true"] {
+            color: var(--clr-danger-400);
 
-        &:hover {
-            border: thin solid var(--clr-primary-800);
+            .form-field {
+                border: thin solid var(--clr-danger-400);
+            }
         }
     }
 }

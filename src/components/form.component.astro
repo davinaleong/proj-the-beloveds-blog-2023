@@ -11,8 +11,8 @@ const data = await response.json()
 const { messageTypes } = data
 ---
 <section id={id} class="section section-content">
-    <div class="container container">
-        <form class="contact-form" action={formAction} method="post">
+    <div class="container container p-v-y-400">
+        <form class="contact-form" action={formAction} method="post" data-element="contact-form">
             <div class="form-group">
               <label for="name" class="form-label form-label-required"><i class="fa-solid fa-user"></i> Name</label>
               <input type="text" name="name" id="name" class="form-field" placeholder="John Doe" required>
@@ -35,6 +35,9 @@ const { messageTypes } = data
               <textarea name="message" id="message" class="form-field" rows="4" required placeholder="Your message"></textarea>
             </div>
             <div class="btn-container contact-form-3-col">
+              <ul class="form-status-list" data-element="contact-form-status">
+                <li class="text-danger-400">Error</li>
+              </ul>
               <p class="text-secondary-400 m-v-b-300">* required fields</p>
               <ButtonAstroComponent className="btn-secondary btn-slide" type="submit">Submit</ButtonAstroComponent>
             </div>
