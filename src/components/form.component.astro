@@ -22,11 +22,11 @@ const { messageTypes } = data
               <input type="email" name="email" id="email" class="form-field" placeholder="johndoe@example.com" required>
             </div>
             <div class="form-group">
-              <label for="subject" class="form-label form-label-required"><i class="fa-solid fa-pen"></i> Subject</label>
-              <select name="subject" id="subject" class="form-field" required>
+              <label for="message_type_id" class="form-label form-label-required"><i class="fa-solid fa-pen"></i> Subject</label>
+              <select name="message_type_id" id="message_type_id" class="form-field" required>
                 <option value="">- Choose Subject -</option>
                 { messageTypes.data.map((messageType: any) => (
-                    <option value={messageType.value}>{messageType.title}</option>
+                    <option value={messageType.id}>{messageType.title}</option>
                 )) }
               </select>
             </div>
@@ -39,7 +39,9 @@ const { messageTypes } = data
                 <li class="text-danger-400">Error</li>
               </ul>
               <p class="text-secondary-400 m-v-b-300">* required fields</p>
-              <ButtonAstroComponent className="btn-secondary btn-slide" type="submit">Submit</ButtonAstroComponent>
+              <ButtonAstroComponent className="btn-secondary btn-slide" type="submit">
+                Submit <i class="fa-solid fa-circle-notch fa-spin"></i>
+              </ButtonAstroComponent>
             </div>
         </form>
     </div>

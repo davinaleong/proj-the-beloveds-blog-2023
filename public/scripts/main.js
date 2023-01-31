@@ -240,6 +240,8 @@ async function contactFormHandler(event) {
         contactFormStatusEl.innerHTML = `
           <li class="text-success-400">Thank you for inquiry. We will get back to you within a few days!</li>
         `
+
+        disableContactForm(false)
         return
       }
     }
