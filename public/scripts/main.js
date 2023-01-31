@@ -566,7 +566,7 @@ async function renderPost() {
       if (subtitle) {
         subContent = `
           <div class="hero-divider m-v-y-300"></div>
-          <p class="fs-italic">${subtitleHtml}</p>
+          <p>${subtitleHtml}</p>
         `
       }
 
@@ -575,7 +575,7 @@ async function renderPost() {
           <div class="container container-hero">
             ${featuredHtml}
             <h1 class="heading heading-hero">${title}</h1>
-            <p class="fs-italic text-primary-300">${publishedAt}</p>
+            <p class="text-primary-300">${publishedAt}</p>
             ${subContent}
 
             <a href="#next" class="btn btn-hero">
