@@ -26,12 +26,17 @@
 
 .section-content {
   --section-height: 50vh;
-  --section-bg-clr: var(--clr-primary-100);
+  --section-bg-clr: var(--clr-primary-50);
+}
+
+.section-content-auto {
+  --section-height: auto;
+  --section-bg-clr: var(--clr-primary-50);
 }
 
 .section-loading {
   --section-height: 100vh;
-  --section-bg-clr: var(--clr-primary-100);
+  --section-bg-clr: var(--clr-primary-50);
 }
 
 /// Sections - Containers

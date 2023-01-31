@@ -1,0 +1,36 @@
+---
+import ButtonAstroComponent from "./../components/button.component.astro"
+
+const {
+    id = "",
+    formAction = ""
+} = Astro.props
+---
+<section id={id} class="section section-content">
+    <div class="container container">
+        <form class="contact-form" action={formAction} method="post">
+            <div class="form-group">
+              <label for="name" class="form-label form-label-required"><i class="fa-solid fa-user"></i> Name</label>
+              <input type="text" name="name" id="name" class="form-field" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label form-label-required"><i class="fa-solid fa-envelope"></i> Email</label>
+              <input type="email" name="email" id="email" class="form-field" placeholder="johndoe@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subject" class="form-label form-label-required"><i class="fa-solid fa-pen"></i> Subject</label>
+              <select name="subject" id="subject" class="form-field" required>
+                <option value="">- Choose Subject -</option>
+              </select>
+            </div>
+            <div class="form-group contact-form-3-col">
+              <label for="message" class="form-label form-label-required"><i class="fa-solid fa-message"></i> Message</label>
+              <textarea name="message" id="message" class="form-field" rows="4" required placeholder="Your message"></textarea>
+            </div>
+            <div class="btn-container contact-form-3-col">
+              <p class="text-secondary-400 m-v-b-300">* required fields</p>
+              <ButtonAstroComponent className="btn-secondary btn-slide" type="submit">Submit</ButtonAstroComponent>
+            </div>
+        </form>
+    </div>
+</section>
