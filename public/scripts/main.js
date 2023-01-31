@@ -44,9 +44,12 @@ const featuredContentEl = document.querySelector(
 const contactFormEl = document.querySelector(
   `form[${dataElementAttr}="contact-form"]`
 )
-const contactFormStatusEl = contactFormEl.querySelector(
-  `[${dataElementAttr}="contact-form-status"]`
-)
+let contactFormStatusEl = null
+if (contactFormEl) {
+  contactFormStatusEl = contactFormEl.querySelector(
+    `[${dataElementAttr}="contact-form-status"]`
+  )
+}
 
 const latestEl = document.querySelector(`[${dataElementAttr}="latest"]`)
 const archiveEl = document.querySelector(`[${dataElementAttr}="archive"]`)
