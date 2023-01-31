@@ -101,6 +101,24 @@ blockquote, .blockquote {
   }
 }
 
+table {
+  width: 100%;
+  margin-bottom: var(--size-v-500);
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  font-weight: normal;
+  color: var(--clr-primary-100);
+  background-color: var(--clr-primary-800);
+}
+
+th, td {
+  padding: var(--size-v-100) var(--size-v-300);
+  border: thin solid var(--clr-primary-800);
+}
+
 /// Post - Media Queries
 @media screen and (min-width: breakpoint("tablet")) {
   .post-grid-archive {
