@@ -2,13 +2,17 @@
 import MainAstroLayout from "./../layouts/main.layout.astro"
 import HeroAstroComponent from "./../components/hero.component.astro"
 import ContentAstroComponent from "./../components/content.component.astro"
+import FormAstroComponent from "./../components/form.component.astro"
 
 const response = await fetch(`${import.meta.env.BLOG_API_URL}contact`)
 const data = await response.json()
 const { page, latest, years } = data
+
+const messagesUrl = `https://davinas-cms.herokuapp.com/api/blog/messages`
 ---
 
 <MainAstroLayout pageClass="body-contact" latest={latest} years={years}>
     <HeroAstroComponent page={page} sectionClassName="section-hero-contact-us" containerClassName="container-hero"/>
-    <ContentAstroComponent id="next" sectionClassName="section-content ta-center" containerClassName="container-section" page={page}/>
+    <ContentAstroComponent id="next" sectionClassName="section-content-auto ta-center" containerClassName="container-section" page={page}/>
+    <FormAstroComponent formAction={messagesUrl}/>
 </MainAstroLayout>

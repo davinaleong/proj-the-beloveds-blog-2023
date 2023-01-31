@@ -40,6 +40,14 @@ const subscribeFormStatusEl = subscribeModalEl.querySelector(
 const featuredContentEl = document.querySelector(
   `[${dataElementAttr}="featured-content"]`
 )
+
+const contactFormEl = document.querySelector(
+  `form[${dataElementAttr}="contact-form"]`
+)
+const contactFormStatusEl = contactFormEl.querySelector(
+  `[${dataElementAttr}="contact-form-status"]`
+)
+
 const latestEl = document.querySelector(`[${dataElementAttr}="latest"]`)
 const archiveEl = document.querySelector(`[${dataElementAttr}="archive"]`)
 const postEl = document.querySelector(`[${dataElementAttr}="post"]`)
@@ -54,13 +62,17 @@ btnSubscribeEl.addEventListener(`click`, (event) =>
 )
 btnCloseModalEl
   .querySelector(iEl)
-  .addEventListener(`click`, (event) => resetSubcribeForm())
+  .addEventListener(`click`, (event) => resetSubscribeForm())
 subscribeFormEl.addEventListener(`submit`, (event) =>
   subscribeFormHandler(event)
 )
+if (contactFormEl) {
+  contactFormEl.addEventListener(`submit`, (event) => contactFormHandler(event))
+}
 
 updateLatestPostLink()
-resetSubcribeForm()
+resetSubscribeForm()
+resetContactForm()
 renderIndex()
 renderArchive()
 renderPost()
@@ -85,21 +97,42 @@ function togglePrimaryHeader() {
   }
 }
 
-function resetSubcribeForm() {
-  console.log(`fn: resetSubcribeForm`)
+function resetSubscribeForm() {
+  console.log(`fn: resetSubscribeForm`)
 
   subscribeModalEl.close()
 
-  const emailEl = subscribeFormEl.elements[`email`]
-  emailEl.value = ``
+  subscribeFormEl.reset()
 
   disableSubscribeForm(false)
 
   subscribeFormStatusEl.innerHTML = ``
 }
 
+function resetContactForm() {
+  console.log(`fn: resetContactForm`)
+
+  if (contactFormEl) {
+    contactFormEl.reset()
+
+    contactFormStatusEl.innerHTML = ``
+
+    disableContactForm(false)
+  }
+}
+
 function disableSubscribeForm(disable) {
   const submitBtnEl = subscribeFormEl.querySelector(`button[type="submit"]`)
+
+  if (disable) {
+    submitBtnEl.setAttribute(disabledAttr, true)
+  } else {
+    submitBtnEl.removeAttribute(disabledAttr)
+  }
+}
+
+function disableContactForm(disable) {
+  const submitBtnEl = contactFormEl.querySelector(`button[type="submit"]`)
 
   if (disable) {
     submitBtnEl.setAttribute(disabledAttr, true)
@@ -117,12 +150,10 @@ async function subscribeFormHandler(event) {
 
   const form = event.currentTarget
   const url = form.action
-  console.log(form, url)
 
   try {
     const formData = new FormData(form)
     const responseData = await postFormDataAsJson({ url, formData })
-    console.log(responseData)
 
     const { message, status, errors } = responseData
     if (errors && errors.email && errors.email.length > 0) {
@@ -146,6 +177,71 @@ async function subscribeFormHandler(event) {
         subscribeFormStatusEl.innerHTML = `
           <p class="form-status__success">Thank you for subscribing!</p>
         `
+        return
+      }
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+async function contactFormHandler(event) {
+  console.log(`fn: contactFormHandler`)
+
+  event.preventDefault()
+  disableContactForm(true)
+  contactFormStatusEl.innerHTML = ``
+
+  const form = event.currentTarget
+  const url = form.action
+
+  try {
+    const formData = new FormData(form)
+    const responseData = await postFormDataAsJson({ url, formData })
+    console.log(responseData)
+
+    const errorHtml = ``
+    const { message, status, errors } = responseData
+
+    if (errors) {
+      const { name, email, subject } = errors
+      const messageErrors = errors.message
+
+      if (name && name.length > 0) {
+        name.map(error => errorHtml += `<li class="text-danger-400">${error}</li>`)
+      }
+
+      if (email && email.length > 0) {
+        email.map(error => errorHtml += `<li class="text-danger-400">${error}</li>`)
+      }
+
+      if (subject && subject.length > 0) {
+        subject.map(error => errorHtml += `<li class="text-danger-400">${error}</li>`)
+      }
+
+      if (messageErrors && messageErrors.length > 0) {
+        messageErrors.map(error => errorHtml += `<li class="text-danger-400">${error}</li>`)
+      }
+
+      contactFormStatusEl.innerHTML = errorHtml
+      disableContactForm(false)
+      return;
+    }
+
+    if (status) {
+      if (status === "ERROR") {
+        contactFormStatusEl.innerHTML = `
+          <li class="text-danger-400">${message}</li>
+        `
+
+        disableContactForm(false)
+        return
+      } else {
+        contactFormStatusEl.innerHTML = `
+          <li class="text-success-400">Thank you for inquiry. We will get back to you within a few days!</li>
+        `
+
+        disableContactForm(false)
         return
       }
     }
@@ -272,7 +368,6 @@ async function updateLatestPostLink() {
 
   const data = await getPageJsonData(`${apiUrl}blog/home`)
   const { latest } = data
-  console.log(latest)
   if (latest && latest.length && latest[0]) {
     latestPostLinkEl.setAttribute(hrefAttr, `/post?slug=${latest[0].slug}`)
   }

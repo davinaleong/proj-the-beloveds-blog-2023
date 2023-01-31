@@ -40,6 +40,10 @@
   position: relative;
   z-index: 1;
   cursor: pointer;
+
+  .fa-spin {
+    display: none;
+  }
 }
 
 .btn:hover {
@@ -364,5 +368,9 @@
 
   opacity: 0.7;
   cursor: not-allowed;
+
+  .fa-spin {
+    display: inline;
+  }
 }
 
