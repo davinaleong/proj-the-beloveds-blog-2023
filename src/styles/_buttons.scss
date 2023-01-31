@@ -62,22 +62,24 @@
   --btn-clr: var(--clr-secondary-400);
   --btn-bg-clr: transparent;
   --btn-border-clr: transparent;
+  --btn-deccoration-clr: var(--clr-secondary-400);
 
   --btn-hover-clr: var(--clr-secondary-500);
   --btn-hover-bg-clr: transparent;
   --btn-hover-border-clr: transparent;
+  --btn-hover-deccoration-clr: var(--clr-secondary-500);
 
-  --btn-padding: 0 0 var(--size-v-50) 0;
+  --btn-padding: 0;
 
   &::before {
     content: "";
     display: block;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 0.5em;
     height: 1px;
     width: 100%;
-    background-color: var(--btn-clr);
+    background-color: var(--btn-deccoration-clr);
     transform: scale(0);
     transform-origin: left center;
     transition: all 0.3s ease-in-out;
@@ -85,7 +87,7 @@
 
   &:hover::before {
     transform: scale(1);
-    background-color: var(--btn-hover-clr);
+    background-color: var(--btn-hover-deccoration-clr);
   }
 }
 

@@ -9,6 +9,17 @@
   z-index: 2;
 }
 
+/// Header - Alert
+.alert-container {
+  .btn-link {
+    --btn-clr: var(--clr-gray-50);
+    --btn-deccoration-clr: var(--clr-gray-50);
+
+    --btn-hover-clr: var(--clr-gray-200);
+    --btn-hover-deccoration-clr: var(--clr-gray-200);
+  }
+}
+
 /// Header - Primary Header Container
 .primary-header-container {
   --primary-header-container-padding: var(--size-v-200);
