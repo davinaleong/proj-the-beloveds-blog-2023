@@ -5,6 +5,10 @@ const {
     id = "",
     formAction = ""
 } = Astro.props
+
+const response = await fetch(`${import.meta.env.BLOG_API_URL}messageTypes`)
+const data = await response.json()
+const { messageTypes } = data
 ---
 <section id={id} class="section section-content">
     <div class="container container">
@@ -21,6 +25,9 @@ const {
               <label for="subject" class="form-label form-label-required"><i class="fa-solid fa-pen"></i> Subject</label>
               <select name="subject" id="subject" class="form-field" required>
                 <option value="">- Choose Subject -</option>
+                { messageTypes.data.map((messageType: any) => (
+                    <option value={messageType.value}>{messageType.title}</option>
+                )) }
               </select>
             </div>
             <div class="form-group contact-form-3-col">
