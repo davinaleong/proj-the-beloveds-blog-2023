@@ -201,7 +201,6 @@ async function contactFormHandler(event) {
   try {
     const formData = new FormData(form)
     const responseData = await postFormDataAsJson({ url, formData })
-    console.log(responseData)
 
     const errorHtml = ``
     const { message, status, errors } = responseData
@@ -256,7 +255,6 @@ async function contactFormHandler(event) {
 async function postFormDataAsJson({ url, formData }) {
   const plainFormData = Object.fromEntries(formData.entries())
   const formDataJsonString = JSON.stringify(plainFormData)
-  console.log(formData, plainFormData, formDataJsonString)
 
   const fetchOptions = {
     method: "POST",
@@ -427,7 +425,6 @@ async function renderArchive() {
         pages.push(i)
       }
     }
-    console.log(pages)
 
     let pagesHtml = ``
     pages.forEach((page) => {

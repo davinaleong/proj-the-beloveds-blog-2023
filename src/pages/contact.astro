@@ -8,7 +8,7 @@ const response = await fetch(`${import.meta.env.API_URL}/blog/contact`)
 const data = await response.json()
 const { page, latest, years } = data
 
-const messagesUrl = `https://davinas-cms.herokuapp.com/api/blog/messages`
+const messagesUrl = `https://davinas-cms.herokuapp.com/api/misc/messages/${import.meta.env.PUBLIC_APP_SLUG}`
 ---
 
 <MainAstroLayout pageClass="body-contact" latest={latest} years={years}>
