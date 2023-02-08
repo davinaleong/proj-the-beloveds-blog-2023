@@ -6,13 +6,15 @@ const {
     formAction = ""
 } = Astro.props
 
-const response = await fetch(`${import.meta.env.BLOG_API_URL}messageTypes`)
+const slug = import.meta.env.PUBLIC_APP_SLUG
+const response = await fetch(`${import.meta.env.API_URL}misc/messageTypes/${slug}/`)
 const data = await response.json()
 const { messageTypes } = data
 ---
 <section id={id} class="section section-content">
     <div class="container container p-v-y-400">
         <form class="contact-form" action={formAction} method="post" data-element="contact-form">
+            <input type="hidden" name="app_slug" value={slug}>
             <div class="form-group">
               <label for="name" class="form-label form-label-required"><i class="fa-solid fa-user"></i> Name</label>
               <input type="text" name="name" id="name" class="form-field" placeholder="John Doe" required>
