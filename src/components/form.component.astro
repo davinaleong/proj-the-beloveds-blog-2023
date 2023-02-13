@@ -14,8 +14,12 @@ const { messageTypes } = data
     <div class="container container p-v-y-400">
         <form class="contact-form" action={formAction} method="post" data-element="contact-form">
             <div class="form-group">
-              <label for="name" class="form-label form-label-required"><i class="fa-solid fa-user"></i> Name</label>
-              <input type="text" name="name" id="name" class="form-field" placeholder="John Doe" required>
+              <label for="first_name" class="form-label form-label-required"><i class="fa-solid fa-user"></i> Name</label>
+              <input type="text" name="first_name" id="first_name" class="form-field" placeholder="John Doe" required>
+            </div>
+            <div class="form-group d-none">
+              <label for="last_name" class="form-label form-label-required"><i class="fa-solid fa-user"></i> Last Name</label>
+              <input type="text" name="last_name" id="last_name" class="form-field" placeholder="John Doe">
             </div>
             <div class="form-group">
               <label for="email" class="form-label form-label-required"><i class="fa-solid fa-envelope"></i> Email</label>

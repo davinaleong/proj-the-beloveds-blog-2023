@@ -197,3 +197,16 @@ $variable-spacers: (
   "1000": $variable-unit * 18,
   "auto": auto,
 );
+
+/// Displays
+$displays: (
+  "none": none,
+  "inline": inline,
+  "block": block,
+  "inline-block": inline-block,
+  "flex": flex,
+  "inline-flex": inline-flex,
+  "grid": grid,
+  "inline-grid": inline-grid,
+);
+
