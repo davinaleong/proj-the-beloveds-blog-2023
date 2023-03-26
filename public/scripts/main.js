@@ -210,24 +210,32 @@ async function contactFormHandler(event) {
       const messageErrors = errors.message
 
       if (name && name.length > 0) {
-        name.map(error => errorHtml += `<li class="text-danger-400">${error}</li>`)
+        name.map(
+          (error) => (errorHtml += `<li class="text-danger-400">${error}</li>`)
+        )
       }
 
       if (email && email.length > 0) {
-        email.map(error => errorHtml += `<li class="text-danger-400">${error}</li>`)
+        email.map(
+          (error) => (errorHtml += `<li class="text-danger-400">${error}</li>`)
+        )
       }
 
       if (subject && subject.length > 0) {
-        subject.map(error => errorHtml += `<li class="text-danger-400">${error}</li>`)
+        subject.map(
+          (error) => (errorHtml += `<li class="text-danger-400">${error}</li>`)
+        )
       }
 
       if (messageErrors && messageErrors.length > 0) {
-        messageErrors.map(error => errorHtml += `<li class="text-danger-400">${error}</li>`)
+        messageErrors.map(
+          (error) => (errorHtml += `<li class="text-danger-400">${error}</li>`)
+        )
       }
 
       contactFormStatusEl.innerHTML = errorHtml
       disableContactForm(false)
-      return;
+      return
     }
 
     if (status) {
@@ -321,7 +329,7 @@ async function renderIndex() {
             <p>${summary}</p>
 
             <p>
-              <a href="/post?slug=${slug}" class="btn btn-secondary-outline btn-slide">
+              <a href="post?slug=${slug}" class="btn btn-secondary-outline btn-slide">
                 Read more <i class="fa-solid fa-chevron-right"></i>
               </a>
             </p>
@@ -448,7 +456,7 @@ async function renderArchive() {
         const { title, slug, summary, featured, published_at } = post
 
         const featuredClass = featured ? `post-article-featured` : ``
-        const postUrl = `post?slug=${slug}`
+        const postUrl = `../post?slug=${slug}`
         const publishedAt = dayjs(published_at).format(`DD MMM YYYY`)
 
         postsHtml += `
